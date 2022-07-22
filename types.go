@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-type Feed struct {
+type RSS struct {
 	XMLName           xml.Name `xml:"rss"`
 	Version           string   `xml:"version,attr"`
 	XMLNSITunes       string   `xml:"xmlns:itunes,attr"`
