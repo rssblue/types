@@ -19,7 +19,7 @@ type Channel struct {
 	XMLName     xml.Name `xml:"channel"`
 	Title       string   `xml:"title"`
 	Description Description
-	Image       ChannelImage
+	Image       Image
 	Language    string `xml:"language"`
 	Category    Category
 	IsExplicit  bool    `xml:"itunes:explicit"`
@@ -64,7 +64,7 @@ type Subcategory struct {
 	Subcategory string   `xml:"text,attr"`
 }
 
-type ChannelImage struct {
+type Image struct {
 	XMLName xml.Name `xml:"itunes:image"`
 	Href    string   `xml:"href,attr"`
 }
@@ -78,7 +78,7 @@ type Item struct {
 	Description   *Description
 	Duration      *int64  `xml:"itunes:duration"`
 	Link          *string `xml:"link"`
-	Image         *ItemImage
+	Image         *Image
 	IsExplicit    bool   `xml:"itunes:explicit"`
 	EpisodeNumber *int64 `xml:"itunes:episode"`
 	SeasonNumber  *int64 `xml:"itunes:season"`
