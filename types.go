@@ -1,4 +1,4 @@
-package rss
+package types
 
 import (
 	"encoding/xml"
@@ -6,13 +6,13 @@ import (
 )
 
 type RSS struct {
-	XMLName           xml.Name `xml:"rss"`
-	Version           string   `xml:"version,attr"`
-	XMLNSITunes       string   `xml:"xmlns:itunes,attr"`
-	XMLNSGooglePlay   string   `xml:"xmlns:googleplay,attr"`
-	XMLNSContent      string   `xml:"xmlns:content,attr"`
-	XMLNSPodcasting20 string   `xml:"xmlns:podcast,attr"`
-	Channel           Channel
+	XMLName             xml.Name `xml:"rss"`
+	Version             string   `xml:"version,attr"`
+	ITunesNamespace     *string  `xml:"xmlns:itunes,attr"`
+	GooglePlayNamespace *string  `xml:"xmlns:googleplay,attr"`
+	ContentNamespace    *string  `xml:"xmlns:content,attr"`
+	PodcastNamespace    *string  `xml:"xmlns:podcast,attr"`
+	Channel             Channel
 }
 
 type Channel struct {
