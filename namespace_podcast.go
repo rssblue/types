@@ -6,10 +6,10 @@ import (
 	"strconv"
 )
 
-// PodcastNamespace is the Podcasting 2.0 namespace.
-type PodcastNamespace string
+// NamespacePodcast is the Podcasting 2.0 namespace.
+type NamespacePodcast string
 
-func (ns *PodcastNamespace) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+func (ns *NamespacePodcast) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 	if ns != nil {
 		if *ns == "" {
 			return xml.Attr{}, nil

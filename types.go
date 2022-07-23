@@ -10,10 +10,10 @@ import (
 type RSS struct {
 	XMLName             xml.Name             `xml:"rss"`
 	Version             RSSVersion           `xml:",attr"`
-	ITunesNamespace     *ITunesNamespace     `xml:",attr"`
-	GooglePlayNamespace *GooglePlayNamespace `xml:",attr"`
-	ContentNamespace    *ContentNamespace    `xml:"xmlns:content,attr"`
-	PodcastNamespace    *PodcastNamespace    `xml:"xmlns:podcast,attr"`
+	NamespaceContent    *NamespaceContent    `xml:"xmlns:content,attr"`
+	NamespaceGooglePlay *NamespaceGooglePlay `xml:",attr"`
+	NamespaceITunes     *NamespaceITunes     `xml:",attr"`
+	NamespacePodcast    *NamespacePodcast    `xml:"xmlns:podcast,attr"`
 	Channel             Channel
 }
 

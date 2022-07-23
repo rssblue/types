@@ -4,10 +4,10 @@ import (
 	"encoding/xml"
 )
 
-// ContentNamespace is the namespace for RSS format's content module.
-type ContentNamespace string
+// NamespaceContent is the namespace for RSS format's content module.
+type NamespaceContent string
 
-func (ns *ContentNamespace) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+func (ns *NamespaceContent) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 	if ns != nil {
 		if *ns == "" {
 			return xml.Attr{}, nil

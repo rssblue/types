@@ -4,10 +4,10 @@ import (
 	"encoding/xml"
 )
 
-// ITunesNamespace is the iTunes namespace.
-type ITunesNamespace string
+// NamespaceITunes is the iTunes namespace.
+type NamespaceITunes string
 
-func (ns *ITunesNamespace) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+func (ns *NamespaceITunes) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 	if ns != nil {
 		if *ns == "" {
 			return xml.Attr{}, nil

@@ -4,10 +4,10 @@ import (
 	"encoding/xml"
 )
 
-// GooglePlayNamespace is the Google Play namespace.
-type GooglePlayNamespace string
+// NamespaceGooglePlay is the Google Play namespace.
+type NamespaceGooglePlay string
 
-func (ns *GooglePlayNamespace) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+func (ns *NamespaceGooglePlay) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 	if ns != nil {
 		if *ns == "" {
 			return xml.Attr{}, nil
