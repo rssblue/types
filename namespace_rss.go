@@ -38,8 +38,8 @@ func (d Description) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // Enclosure is used to link to the episode's media file.
 type Enclosure struct {
-	XMLName      xml.Name `xml:"enclosure"`
-	URL          string   `xml:"url,attr"`
-	Length       int64    `xml:"length,attr"`
-	MimetypeName string   `xml:"type,attr"`
+	XMLName  xml.Name `xml:"enclosure"`
+	URL      string   `xml:"url,attr"`
+	Length   int64    `xml:"length,attr"`
+	Mimetype string   `xml:"type,attr"`
 }

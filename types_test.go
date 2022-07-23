@@ -36,8 +36,8 @@ func TestMarshal(t *testing.T) {
 					ITunesAuthor:   "Jane Doe",
 					Link:           pointer("https://example.com"),
 					ITunesOwner: types.ITunesOwner{
-						Name:         "Jane Doe",
-						EmailAddress: "jane@example.com",
+						Name:  "Jane Doe",
+						Email: "jane@example.com",
 					},
 					ITunesType: "episodic",
 					Copyright:  pointer("© RSS Blue"),
@@ -81,9 +81,9 @@ func TestMarshal(t *testing.T) {
 						{
 							Title: "Hello Again",
 							Enclosure: types.Enclosure{
-								URL:          "https://rssblue.com/@bookworm-podcast/hello-again/hello-again.mp3",
-								MimetypeName: "audio/mpeg",
-								Length:       2048,
+								URL:      "https://rssblue.com/@bookworm-podcast/hello-again/hello-again.mp3",
+								Mimetype: "audio/mpeg",
+								Length:   2048,
 							},
 							GUID:    "hello-again",
 							PubDate: types.Date(time.Date(2021, time.July, 10, 9, 3, 59, 0, time.UTC)),
@@ -92,8 +92,8 @@ func TestMarshal(t *testing.T) {
 							},
 							ITunesEpisodeType: "full",
 							PodcastTranscript: &types.PodcastTranscript{
-								URL:          "https://rssblue.com/@bookworm-podcast/hello-again/transcript.vtt",
-								MimetypeName: "text/vtt",
+								URL:      "https://rssblue.com/@bookworm-podcast/hello-again/transcript.vtt",
+								Mimetype: "text/vtt",
 							},
 							PodcastValue: &types.PodcastValue{
 								Type:   "lightning",
@@ -117,9 +117,9 @@ func TestMarshal(t *testing.T) {
 						{
 							Title: "Hello World",
 							Enclosure: types.Enclosure{
-								URL:          "https://rssblue.com/@bookworm-podcast/hello-world/hello-world.mp3",
-								MimetypeName: "audio/mpeg",
-								Length:       1024,
+								URL:      "https://rssblue.com/@bookworm-podcast/hello-world/hello-world.mp3",
+								Mimetype: "audio/mpeg",
+								Length:   1024,
 							},
 							GUID:    "hello-world",
 							PubDate: types.Date(time.Date(2021, time.July, 8, 15, 20, 10, 0, time.UTC)),
@@ -130,12 +130,12 @@ func TestMarshal(t *testing.T) {
 							ITunesExplicit:    true,
 							ITunesEpisodeType: "full",
 							PodcastTranscript: &types.PodcastTranscript{
-								URL:          "https://rssblue.com/@bookworm-podcast/hello-world/transcript.srt",
-								MimetypeName: "application/x-subrip",
+								URL:      "https://rssblue.com/@bookworm-podcast/hello-world/transcript.srt",
+								Mimetype: "application/x-subrip",
 							},
 							PodcastChapters: &types.PodcastChapters{
-								URL:          "https://rssblue.com/@bookworm-podcast/hello-world/chapters.json",
-								MimetypeName: "application/json+chapters",
+								URL:      "https://rssblue.com/@bookworm-podcast/hello-world/chapters.json",
+								Mimetype: "application/json+chapters",
 							},
 							PodcastLocation: &types.PodcastLocation{
 								Geo: &types.PodcastGeo{
@@ -232,8 +232,8 @@ func TestMarshal(t *testing.T) {
 					},
 					ITunesAuthor: "John Doe",
 					ITunesOwner: types.ITunesOwner{
-						Name:         "John Doe",
-						EmailAddress: "john@example.com",
+						Name:  "John Doe",
+						Email: "john@example.com",
 					},
 					ITunesType: "serial",
 					PodcastLocation: &types.PodcastLocation{

@@ -35,17 +35,17 @@ func (podcastGUID PodcastGUID) MarshalXML(e *xml.Encoder, start xml.StartElement
 // PodcastTranscript denotes episode's transcript. Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#transcript
 type PodcastTranscript struct {
-	XMLName      xml.Name `xml:"podcast:transcript"`
-	URL          string   `xml:"url,attr"`
-	MimetypeName string   `xml:"type,attr"`
+	XMLName  xml.Name `xml:"podcast:transcript"`
+	URL      string   `xml:"url,attr"`
+	Mimetype string   `xml:"type,attr"`
 }
 
 // PodcastChapters denotes episode's chapters. Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#chapters
 type PodcastChapters struct {
-	XMLName      xml.Name `xml:"podcast:chapters"`
-	URL          string   `xml:"url,attr"`
-	MimetypeName string   `xml:"type,attr"`
+	XMLName  xml.Name `xml:"podcast:chapters"`
+	URL      string   `xml:"url,attr"`
+	Mimetype string   `xml:"type,attr"`
 }
 
 // PodcastValue enables to describe Value 4 Value payments. Read more at

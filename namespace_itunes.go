@@ -19,9 +19,9 @@ func (ns *NamespaceITunes) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 
 // ITunesOwner is used for owner's contact information.
 type ITunesOwner struct {
-	XMLName      xml.Name `xml:"itunes:owner"`
-	Name         string   `xml:"itunes:name"`
-	EmailAddress string   `xml:"itunes:email"`
+	XMLName xml.Name `xml:"itunes:owner"`
+	Name    string   `xml:"itunes:name"`
+	Email   string   `xml:"itunes:email"`
 }
 
 // ITunesCategory denotes podcast's category information.
