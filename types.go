@@ -38,7 +38,7 @@ type Channel struct {
 }
 
 type PodcastGUID struct {
-	XMLName xml.Name `xml:"podcast:guid,omitempty"`
+	XMLName xml.Name `xml:"podcast:guid"`
 	GUID    string   `xml:",chardata"`
 }
 
@@ -139,21 +139,21 @@ type Enclosure struct {
 
 // See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md>
 type Transcript struct {
-	XMLName      xml.Name `xml:"podcast:transcript,omitempty"`
+	XMLName      xml.Name `xml:"podcast:transcript"`
 	URL          string   `xml:"url,attr"`
 	MimetypeName string   `xml:"type,attr"`
 }
 
 // See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md>
 type Chapters struct {
-	XMLName      xml.Name `xml:"podcast:chapters,omitempty"`
+	XMLName      xml.Name `xml:"podcast:chapters"`
 	URL          string   `xml:"url,attr"`
 	MimetypeName string   `xml:"type,attr"`
 }
 
 // See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/value/value.md>
 type Value struct {
-	XMLName    xml.Name `xml:"podcast:value,omitempty"`
+	XMLName    xml.Name `xml:"podcast:value"`
 	Type       string   `xml:"type,attr"`
 	Method     string   `xml:"method,attr"`
 	Suggested  *float64 `xml:"suggested,attr"`
@@ -162,7 +162,7 @@ type Value struct {
 
 // See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md>
 type Locked struct {
-	XMLName  xml.Name `xml:"podcast:locked,omitempty"`
+	XMLName  xml.Name `xml:"podcast:locked"`
 	Owner    string
 	IsLocked bool
 }
@@ -195,7 +195,7 @@ func (l *Locked) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 
 // See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md>
 type Location struct {
-	XMLName  xml.Name `xml:"podcast:location,omitempty"`
+	XMLName  xml.Name `xml:"podcast:location"`
 	Geo      *string  `xml:"geo,attr"`
 	OSM      *string  `xml:"osm,attr"`
 	Location string   `xml:",chardata"`
@@ -203,7 +203,7 @@ type Location struct {
 
 // See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md>
 type Funding struct {
-	XMLName xml.Name `xml:"podcast:funding,omitempty"`
+	XMLName xml.Name `xml:"podcast:funding"`
 	URL     string   `xml:"url,attr"`
 	Caption string   `xml:",chardata"`
 }
@@ -221,6 +221,6 @@ type ValueRecipient struct {
 }
 
 type ItemImage struct {
-	XMLName xml.Name `xml:"itunes:image,omitempty"`
+	XMLName xml.Name `xml:"itunes:image"`
 	Href    string   `xml:"href,attr"`
 }
