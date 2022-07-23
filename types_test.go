@@ -9,13 +9,13 @@ import (
 	"github.com/rssblue/types"
 )
 
-func TestCreateRss(t *testing.T) {
+func TestMarshalUnmarshal(t *testing.T) {
 	tests := []struct {
-		rss    types.RSS
-		output string
+		unmarshalled types.RSS
+		marshalled   string
 	}{
 		{
-			rss: types.RSS{
+			unmarshalled: types.RSS{
 				Version:          "2.0",
 				ITunesNamespace:  &types.ITunesNamespace,
 				PodcastNamespace: &types.PodcastNamespace,
@@ -145,7 +145,7 @@ func TestCreateRss(t *testing.T) {
 					},
 				},
 			},
-			output: `<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+			marshalled: `<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
   <channel>
     <title>Bookworm Podcast</title>
     <description><![CDATA[<strong>Description</strong>]]></description>
@@ -202,7 +202,7 @@ func TestCreateRss(t *testing.T) {
 </rss>`,
 		},
 		{
-			rss: types.RSS{
+			unmarshalled: types.RSS{
 				Version:          "2.0",
 				ITunesNamespace:  &types.ITunesNamespace,
 				PodcastNamespace: &types.PodcastNamespace,
@@ -233,7 +233,7 @@ func TestCreateRss(t *testing.T) {
 					Medium: "music",
 				},
 			},
-			output: `<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+			marshalled: `<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
   <channel>
     <title>World Explorer Podcast</title>
     <description><![CDATA[Very interesting podcast.]]></description>
@@ -256,12 +256,23 @@ func TestCreateRss(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		output, err := xml.MarshalIndent(&test.rss, "", "  ")
+		// Marshalling
+		marshalled, err := xml.MarshalIndent(&test.unmarshalled, "", "  ")
 		if err != nil {
 			t.Errorf("%d: unexpected error: %v", i, err)
 		}
-		diff := cmp.Diff(test.output, string(output))
+		diff := cmp.Diff(test.marshalled, string(marshalled))
 		if diff != "" {
+			t.Errorf("%d: mismatch (-want +got):\n%s", i, diff)
+		}
+
+		// Unmarshalling
+		unmarshalled := types.RSS{}
+		err = xml.Unmarshal([]byte(test.marshalled), &unmarshalled)
+		if err != nil {
+			t.Errorf("%d: unexpected error: %v", i, err)
+		}
+		if diff := cmp.Diff(test.unmarshalled, unmarshalled); diff != "" {
 			t.Errorf("%d: mismatch (-want +got):\n%s", i, diff)
 		}
 	}
