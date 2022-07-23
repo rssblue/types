@@ -17,8 +17,11 @@ func TestMarshal(t *testing.T) {
 		{
 			unmarshalled: types.RSS{
 				Channel: types.Channel{
-					Title:       "Bookworm Podcast",
-					Description: types.Description("<strong>Description</strong>"),
+					Title: "Bookworm Podcast",
+					Description: types.Description{
+						Description: "<strong>Description</strong>",
+						IsCDATA:     true,
+					},
 					ITunesImage: types.ITunesImage{
 						URL: "https://rssblue.com/@bookworm-podcast/cover-art.png",
 					},
@@ -118,9 +121,12 @@ func TestMarshal(t *testing.T) {
 								MimetypeName: "audio/mpeg",
 								Length:       1024,
 							},
-							GUID:              "hello-world",
-							PubDate:           types.Date(time.Date(2021, time.July, 8, 15, 20, 10, 0, time.UTC)),
-							Description:       pointer(types.Description("This is my <em>first</em> episode!")),
+							GUID:    "hello-world",
+							PubDate: types.Date(time.Date(2021, time.July, 8, 15, 20, 10, 0, time.UTC)),
+							Description: &types.Description{
+								Description: "This is my <em>first</em> episode!",
+								IsCDATA:     true,
+							},
 							ITunesExplicit:    true,
 							ITunesEpisodeType: "full",
 							PodcastTranscript: &types.PodcastTranscript{
@@ -207,8 +213,10 @@ func TestMarshal(t *testing.T) {
 			unmarshalled: types.RSS{
 				NamespaceContent: pointer(types.NamespaceContent("")), // Should remove the namespace.
 				Channel: types.Channel{
-					Title:       "World Explorer Podcast",
-					Description: types.Description("Very interesting podcast."),
+					Title: "World Explorer Podcast",
+					Description: types.Description{
+						Description: "Very interesting podcast.",
+					},
 					ITunesImage: types.ITunesImage{
 						URL: "https://rssblue.com/@world-explorer-podcast/cover-art.jpg",
 					},
@@ -245,7 +253,7 @@ func TestMarshal(t *testing.T) {
 			},
 			marshalled: `<rss version="2.0" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
   <channel>
-    <description><![CDATA[Very interesting podcast.]]></description>
+    <description>Very interesting podcast.</description>
     <language>fr</language>
     <title>World Explorer Podcast</title>
     <itunes:author>John Doe</itunes:author>

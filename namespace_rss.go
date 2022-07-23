@@ -15,13 +15,24 @@ func (rssVersion RSSVersion) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 }
 
 // Description is used for podcast's or episode's description.
-type Description string
+type Description struct {
+	XMLName     xml.Name `xml:"description"`
+	Description string
+	IsCDATA     bool
+}
 
 func (d Description) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	if d.IsCDATA {
+		return e.EncodeElement(struct {
+			Description string `xml:",cdata"`
+		}{
+			Description: d.Description,
+		}, start)
+	}
 	return e.EncodeElement(struct {
-		Description string `xml:",cdata"`
+		Description string `xml:",innerxml"`
 	}{
-		Description: string(d),
+		Description: d.Description,
 	}, start)
 }
 
