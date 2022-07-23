@@ -19,25 +19,25 @@ type RSS struct {
 
 // Channel represents the podcast's feed.
 type Channel struct {
-	XMLName         xml.Name    `xml:"channel"`
-	Copyright       *string     `xml:"copyright"`
-	Description     Description `xml:"description"`
-	Language        string      `xml:"language"`
-	Link            *string     `xml:"link"`
-	Title           string      `xml:"title"`
-	ITunesAuthor    string      `xml:"itunes:author"`
-	ITunesCategory  ITunesCategory
-	ITunesExplicit  bool `xml:"itunes:explicit"`
-	ITunesImage     ITunesImage
-	ITunesOwner     ITunesOwner
-	ITunesType      string `xml:"itunes:type"`
-	PodcastFundings []PodcastFunding
-	PodcastGUID     *PodcastGUID `xml:"podcast:guid"`
-	PodcastLocation *PodcastLocation
-	PodcastLocked   *PodcastLocked
-	PodcastMedium   string `xml:"podcast:medium"`
-	PodcastValue    *PodcastValue
-	Items           []Item
+	XMLName          xml.Name    `xml:"channel"`
+	Copyright        *string     `xml:"copyright"`
+	Description      Description `xml:"description"`
+	Language         string      `xml:"language"`
+	Link             *string     `xml:"link"`
+	Title            string      `xml:"title"`
+	ITunesAuthor     string      `xml:"itunes:author"`
+	ITunesCategories []ITunesCategory
+	ITunesExplicit   bool `xml:"itunes:explicit"`
+	ITunesImage      ITunesImage
+	ITunesOwner      ITunesOwner
+	ITunesType       string `xml:"itunes:type"`
+	PodcastFundings  []PodcastFunding
+	PodcastGUID      *PodcastGUID `xml:"podcast:guid"`
+	PodcastLocation  *PodcastLocation
+	PodcastLocked    *PodcastLocked
+	PodcastMedium    string `xml:"podcast:medium"`
+	PodcastValue     *PodcastValue
+	Items            []Item
 }
 
 // Item represents episode of a podcast.

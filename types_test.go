@@ -23,9 +23,11 @@ func TestMarshal(t *testing.T) {
 						URL: "https://rssblue.com/@bookworm-podcast/cover-art.png",
 					},
 					Language: "en",
-					ITunesCategory: types.ITunesCategory{
-						Category:    "Society & Culture",
-						Subcategory: pointer(types.ITunesSubcategory("Documentary")),
+					ITunesCategories: []types.ITunesCategory{
+						{
+							Category:    "Society & Culture",
+							Subcategory: pointer(types.ITunesSubcategory("Documentary")),
+						},
 					},
 					ITunesExplicit: true,
 					ITunesAuthor:   "Jane Doe",
@@ -211,8 +213,14 @@ func TestMarshal(t *testing.T) {
 						URL: "https://rssblue.com/@world-explorer-podcast/cover-art.jpg",
 					},
 					Language: "fr",
-					ITunesCategory: types.ITunesCategory{
-						Category: "Fiction",
+					ITunesCategories: []types.ITunesCategory{
+						{
+							Category: "Fiction",
+						},
+						{
+							Category:    "Society & Culture",
+							Subcategory: pointer(types.ITunesSubcategory("Documentary")),
+						},
 					},
 					ITunesAuthor: "John Doe",
 					ITunesOwner: types.ITunesOwner{
@@ -242,6 +250,9 @@ func TestMarshal(t *testing.T) {
     <title>World Explorer Podcast</title>
     <itunes:author>John Doe</itunes:author>
     <itunes:category text="Fiction"></itunes:category>
+    <itunes:category text="Society &amp; Culture">
+      <itunes:category text="Documentary"></itunes:category>
+    </itunes:category>
     <itunes:explicit>false</itunes:explicit>
     <itunes:image href="https://rssblue.com/@world-explorer-podcast/cover-art.jpg"></itunes:image>
     <itunes:owner>
