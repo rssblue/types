@@ -237,10 +237,6 @@ func TestMarshal(t *testing.T) {
 					},
 					ITunesType: "serial",
 					PodcastLocation: &types.PodcastLocation{
-						Geo: &types.PodcastGeo{
-							Latitude:  30.2672,
-							Longitude: 97.7431,
-						},
 						OSM: &types.PodcastOSM{
 							Type:      'R',
 							FeatureID: 113314,
@@ -269,7 +265,7 @@ func TestMarshal(t *testing.T) {
     </itunes:owner>
     <itunes:type>serial</itunes:type>
     <podcast:guid>96b952d9-06b2-5489-a3f3-d371473121fa</podcast:guid>
-    <podcast:location geo="geo:30.2672,97.7431" osm="R113314">Austin, TX</podcast:location>
+    <podcast:location osm="R113314">Austin, TX</podcast:location>
     <podcast:medium>music</podcast:medium>
   </channel>
 </rss>`,

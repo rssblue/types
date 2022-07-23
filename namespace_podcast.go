@@ -54,7 +54,7 @@ type PodcastValue struct {
 	XMLName    xml.Name `xml:"podcast:value"`
 	Type       string   `xml:"type,attr"`
 	Method     string   `xml:"method,attr"`
-	Suggested  *float64 `xml:"suggested,attr"`
+	Suggested  *float64 `xml:"suggested,attr,omitempty"`
 	Recipients []PodcastValueRecipient
 }
 
@@ -100,8 +100,8 @@ func (l PodcastLocked) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#location
 type PodcastLocation struct {
 	XMLName  xml.Name    `xml:"podcast:location"`
-	Geo      *PodcastGeo `xml:",attr"`
-	OSM      *PodcastOSM `xml:"osm,attr"`
+	Geo      *PodcastGeo `xml:",attr,omitempty"`
+	OSM      *PodcastOSM `xml:",attr,omitempty"`
 	Location string      `xml:",chardata"`
 }
 
