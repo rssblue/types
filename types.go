@@ -16,9 +16,9 @@ type RSS struct {
 }
 
 type Channel struct {
-	XMLName     xml.Name `xml:"channel"`
-	Title       string   `xml:"title"`
-	Description Description
+	XMLName     xml.Name    `xml:"channel"`
+	Title       string      `xml:"title"`
+	Description Description `xml:"description"`
 	Image       Image
 	Language    string `xml:"language"`
 	Category    Category
@@ -48,9 +48,26 @@ type Owner struct {
 	EmailAddress string   `xml:"itunes:email"`
 }
 
-type Description struct {
-	XMLName     xml.Name `xml:"description"`
-	Description string   `xml:",cdata"`
+type (
+	Description    string
+	descriptionXML struct {
+		Description string `xml:",cdata"`
+	}
+)
+
+func (d Description) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return e.EncodeElement(descriptionXML{Description: string(d)}, start)
+}
+
+func (description *Description) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	var descriptionStruct descriptionXML
+	err := d.DecodeElement(&descriptionStruct, &start)
+	if err != nil {
+		return err
+	}
+
+	*description = Description(descriptionStruct.Description)
+	return nil
 }
 
 type Category struct {
@@ -73,11 +90,11 @@ type Item struct {
 	XMLName       xml.Name `xml:"item"`
 	Title         string   `xml:"title"`
 	Enclosure     Enclosure
-	GUID          string  `xml:"guid"`
-	PubDate       PubDate `xml:"pubDate"`
-	Description   *Description
-	Duration      *int64  `xml:"itunes:duration"`
-	Link          *string `xml:"link"`
+	GUID          string       `xml:"guid"`
+	PubDate       PubDate      `xml:"pubDate"`
+	Description   *Description `xml:"description"`
+	Duration      *int64       `xml:"itunes:duration"`
+	Link          *string      `xml:"link"`
 	Image         *Image
 	IsExplicit    bool   `xml:"itunes:explicit"`
 	EpisodeNumber *int64 `xml:"itunes:episode"`

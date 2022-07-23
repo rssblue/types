@@ -20,10 +20,8 @@ func TestCreateRss(t *testing.T) {
 				ITunesNamespace:  &types.ITunesNamespace,
 				PodcastNamespace: &types.PodcastNamespace,
 				Channel: types.Channel{
-					Title: "Bookworm Podcast",
-					Description: types.Description{
-						Description: "<strong>Description</strong>",
-					},
+					Title:       "Bookworm Podcast",
+					Description: types.Description("<strong>Description</strong>"),
 					Image: types.Image{
 						Href: "https://rssblue.com/@bookworm-podcast/cover-art.png",
 					},
@@ -125,13 +123,11 @@ func TestCreateRss(t *testing.T) {
 								MimetypeName: "audio/mpeg",
 								Length:       1024,
 							},
-							GUID:    "hello-world",
-							PubDate: types.PubDate(time.Date(2021, time.July, 8, 15, 20, 10, 0, time.UTC)),
-							Description: &types.Description{
-								Description: "This is my <em>first</em> episode!",
-							},
-							IsExplicit: true,
-							Type:       "full",
+							GUID:        "hello-world",
+							PubDate:     types.PubDate(time.Date(2021, time.July, 8, 15, 20, 10, 0, time.UTC)),
+							Description: pointer(types.Description("This is my <em>first</em> episode!")),
+							IsExplicit:  true,
+							Type:        "full",
 							Transcript: &types.Transcript{
 								URL:          "https://rssblue.com/@bookworm-podcast/hello-world/transcript.srt",
 								MimetypeName: "application/x-subrip",
@@ -211,10 +207,8 @@ func TestCreateRss(t *testing.T) {
 				ITunesNamespace:  &types.ITunesNamespace,
 				PodcastNamespace: &types.PodcastNamespace,
 				Channel: types.Channel{
-					Title: "World Explorer Podcast",
-					Description: types.Description{
-						Description: "Very interesting podcast.",
-					},
+					Title:       "World Explorer Podcast",
+					Description: types.Description("Very interesting podcast."),
 					Image: types.Image{
 						Href: "https://rssblue.com/@world-explorer-podcast/cover-art.jpg",
 					},
