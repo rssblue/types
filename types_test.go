@@ -16,9 +16,6 @@ func TestMarshal(t *testing.T) {
 	}{
 		{
 			unmarshalled: types.RSS{
-				Version:          "2.0",
-				ITunesNamespace:  &types.ITunesNamespace,
-				PodcastNamespace: &types.PodcastNamespace,
 				Channel: types.Channel{
 					Title:       "Bookworm Podcast",
 					Description: types.Description("<strong>Description</strong>"),
@@ -145,7 +142,7 @@ func TestMarshal(t *testing.T) {
 					},
 				},
 			},
-			marshalled: `<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+			marshalled: `<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:podcast="https://podcastindex.org/namespace/1.0">
   <channel>
     <title>Bookworm Podcast</title>
     <description><![CDATA[<strong>Description</strong>]]></description>
@@ -203,9 +200,6 @@ func TestMarshal(t *testing.T) {
 		},
 		{
 			unmarshalled: types.RSS{
-				Version:          "2.0",
-				ITunesNamespace:  &types.ITunesNamespace,
-				PodcastNamespace: &types.PodcastNamespace,
 				Channel: types.Channel{
 					Title:       "World Explorer Podcast",
 					Description: types.Description("Very interesting podcast."),
@@ -233,7 +227,7 @@ func TestMarshal(t *testing.T) {
 					Medium: "music",
 				},
 			},
-			marshalled: `<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+			marshalled: `<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:podcast="https://podcastindex.org/namespace/1.0">
   <channel>
     <title>World Explorer Podcast</title>
     <description><![CDATA[Very interesting podcast.]]></description>
