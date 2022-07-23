@@ -200,6 +200,7 @@ func TestMarshal(t *testing.T) {
 		},
 		{
 			unmarshalled: types.RSS{
+				ContentNamespace: pointer(types.ContentNamespace("")), // Should remove the namespace.
 				Channel: types.Channel{
 					Title:       "World Explorer Podcast",
 					Description: types.Description("Very interesting podcast."),
@@ -227,7 +228,7 @@ func TestMarshal(t *testing.T) {
 					Medium: "music",
 				},
 			},
-			marshalled: `<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+			marshalled: `<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:podcast="https://podcastindex.org/namespace/1.0">
   <channel>
     <title>World Explorer Podcast</title>
     <description><![CDATA[Very interesting podcast.]]></description>
