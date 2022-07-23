@@ -1,5 +1,8 @@
 # Types
 
+This package provides a number of Go struct types with field tags for XML marshalling.
+There are standard RSS 2.0, iTunes and many of the [Podcasting 2.0](https://github.com/Podcastindex-org/podcast-namespace) tags available.
+
 ## Install
 
 There is no stable release yet, and backwards-incompatible changes may still be introduced.
