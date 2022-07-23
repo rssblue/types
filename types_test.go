@@ -9,7 +9,7 @@ import (
 	"github.com/rssblue/types"
 )
 
-func TestMarshalUnmarshal(t *testing.T) {
+func TestMarshal(t *testing.T) {
 	tests := []struct {
 		unmarshalled types.RSS
 		marshalled   string
@@ -263,16 +263,6 @@ func TestMarshalUnmarshal(t *testing.T) {
 		}
 		diff := cmp.Diff(test.marshalled, string(marshalled))
 		if diff != "" {
-			t.Errorf("%d: mismatch (-want +got):\n%s", i, diff)
-		}
-
-		// Unmarshalling
-		unmarshalled := types.RSS{}
-		err = xml.Unmarshal([]byte(test.marshalled), &unmarshalled)
-		if err != nil {
-			t.Errorf("%d: unexpected error: %v", i, err)
-		}
-		if diff := cmp.Diff(test.unmarshalled, unmarshalled); diff != "" {
 			t.Errorf("%d: mismatch (-want +got):\n%s", i, diff)
 		}
 	}
