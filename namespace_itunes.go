@@ -17,24 +17,24 @@ func (ns *ITunesNamespace) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 	return xml.Attr{Name: xml.Name{Local: "xmlns:itunes"}, Value: "http://www.itunes.com/dtds/podcast-1.0.dtd"}, nil
 }
 
-// Owner is used for owner's contact information.
-type Owner struct {
+// ITunesOwner is used for owner's contact information.
+type ITunesOwner struct {
 	XMLName      xml.Name `xml:"itunes:owner"`
 	Name         string   `xml:"itunes:name"`
 	EmailAddress string   `xml:"itunes:email"`
 }
 
-// Category denotes podcast's category information.
-type Category struct {
-	XMLName     xml.Name     `xml:"itunes:category"`
-	Category    string       `xml:"text,attr"`
-	Subcategory *Subcategory `xml:"itunes:category"`
+// ITunesCategory denotes podcast's category information.
+type ITunesCategory struct {
+	XMLName     xml.Name           `xml:"itunes:category"`
+	Category    string             `xml:"text,attr"`
+	Subcategory *ITunesSubcategory `xml:"itunes:category"`
 }
 
-// Subcategory is more granural; it is a subset of Category.
-type Subcategory string
+// ITunesSubcategory is more granural; it is a subset of Category.
+type ITunesSubcategory string
 
-func (s Subcategory) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (s ITunesSubcategory) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return e.EncodeElement(struct {
 		Category string `xml:"text,attr"`
 	}{
@@ -42,8 +42,8 @@ func (s Subcategory) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	}, start)
 }
 
-// Image is podcast's or episode's artwork.
-type Image struct {
+// ITunesImage is podcast's or episode's artwork.
+type ITunesImage struct {
 	XMLName xml.Name `xml:"itunes:image"`
 	URL     string   `xml:"href,attr"`
 }

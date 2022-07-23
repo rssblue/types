@@ -30,42 +30,56 @@ func (podcastGUID PodcastGUID) MarshalXML(e *xml.Encoder, start xml.StartElement
 	}, start)
 }
 
-// Transcript denotes episode's transcript. Read more at
+// PodcastTranscript denotes episode's transcript. Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#transcript
-type Transcript struct {
+type PodcastTranscript struct {
 	XMLName      xml.Name `xml:"podcast:transcript"`
 	URL          string   `xml:"url,attr"`
 	MimetypeName string   `xml:"type,attr"`
 }
 
-// Chapters denotes episode's chapters. Read more at
+// PodcastChapters denotes episode's chapters. Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#chapters
-type Chapters struct {
+type PodcastChapters struct {
 	XMLName      xml.Name `xml:"podcast:chapters"`
 	URL          string   `xml:"url,attr"`
 	MimetypeName string   `xml:"type,attr"`
 }
 
-// Value enables to describe Value 4 Value payments. Read more at
+// PodcastValue enables to describe Value 4 Value payments. Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#value
-type Value struct {
+type PodcastValue struct {
 	XMLName    xml.Name `xml:"podcast:value"`
 	Type       string   `xml:"type,attr"`
 	Method     string   `xml:"method,attr"`
 	Suggested  *float64 `xml:"suggested,attr"`
-	Recipients []ValueRecipient
+	Recipients []PodcastValueRecipient
 }
 
-// Locked tells podcast hosting platforms whether they are allowed to import
+// PodcastValueRecipient describes the recipient of Value 4 Value payments.
+// Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#value
+type PodcastValueRecipient struct {
+	XMLName     xml.Name `xml:"podcast:valueRecipient"`
+	Name        *string  `xml:"name,attr"`
+	CustomKey   *string  `xml:"customKey,attr"`
+	CustomValue *string  `xml:"customValue,attr"`
+	Type        string   `xml:"type,attr"`
+	Address     string   `xml:"address,attr"`
+	Split       uint     `xml:"split,attr"`
+	Fee         *bool    `xml:"bool,attr"`
+}
+
+// PodcastLocked tells podcast hosting platforms whether they are allowed to import
 // the feed. Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#locked
-type Locked struct {
+type PodcastLocked struct {
 	XMLName  xml.Name `xml:"podcast:locked"`
 	Owner    string
 	IsLocked bool
 }
 
-func (l Locked) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (l PodcastLocked) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	strBool := "no"
 	if l.IsLocked {
 		strBool = "yes"
@@ -79,34 +93,20 @@ func (l Locked) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	}, start)
 }
 
-// Location describes editorial focus of podcast's or episode's content. Read
-// more at
+// PodcastLocation describes editorial focus of podcast's or episode's content.
+// Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#location
-type Location struct {
+type PodcastLocation struct {
 	XMLName  xml.Name `xml:"podcast:location"`
 	Geo      *string  `xml:"geo,attr"`
 	OSM      *string  `xml:"osm,attr"`
 	Location string   `xml:",chardata"`
 }
 
-// Funding denotes donation/funding links. Read more at
+// PodcastFunding denotes donation/funding links. Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#value
-type Funding struct {
+type PodcastFunding struct {
 	XMLName xml.Name `xml:"podcast:funding"`
 	URL     string   `xml:"url,attr"`
 	Caption string   `xml:",chardata"`
-}
-
-// ValueRecipient describes the recipient of Value 4 Value payments. Read more
-// at
-// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#value
-type ValueRecipient struct {
-	XMLName     xml.Name `xml:"podcast:valueRecipient"`
-	Name        *string  `xml:"name,attr"`
-	CustomKey   *string  `xml:"customKey,attr"`
-	CustomValue *string  `xml:"customValue,attr"`
-	Type        string   `xml:"type,attr"`
-	Address     string   `xml:"address,attr"`
-	Split       uint     `xml:"split,attr"`
-	Fee         *bool    `xml:"bool,attr"`
 }

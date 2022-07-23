@@ -19,37 +19,37 @@ func TestMarshal(t *testing.T) {
 				Channel: types.Channel{
 					Title:       "Bookworm Podcast",
 					Description: types.Description("<strong>Description</strong>"),
-					Image: types.Image{
+					ITunesImage: types.ITunesImage{
 						URL: "https://rssblue.com/@bookworm-podcast/cover-art.png",
 					},
 					Language: "en",
-					Category: types.Category{
+					ITunesCategory: types.ITunesCategory{
 						Category:    "Society & Culture",
-						Subcategory: pointer(types.Subcategory("Documentary")),
+						Subcategory: pointer(types.ITunesSubcategory("Documentary")),
 					},
-					IsExplicit: true,
-					Author:     "Jane Doe",
-					Website:    pointer("https://example.com"),
-					Owner: types.Owner{
+					ITunesExplicit: true,
+					Author:         "Jane Doe",
+					Website:        pointer("https://example.com"),
+					ITunesOwner: types.ITunesOwner{
 						Name:         "Jane Doe",
 						EmailAddress: "jane@example.com",
 					},
-					Type:      "episodic",
-					Copyright: pointer("© RSS Blue"),
-					Locked: &types.Locked{
+					ITunesType: "episodic",
+					Copyright:  pointer("© RSS Blue"),
+					PodcastLocked: &types.PodcastLocked{
 						Owner:    "jane@example.com",
 						IsLocked: false,
 					},
-					Fundings: []types.Funding{
+					PodcastFundings: []types.PodcastFunding{
 						{
 							URL:     "https://example.com/donate",
 							Caption: "Support “Bookworm Podcast”",
 						},
 					},
-					Value: &types.Value{
+					PodcastValue: &types.PodcastValue{
 						Type:   "lightning",
 						Method: "keysend",
-						Recipients: []types.ValueRecipient{
+						Recipients: []types.PodcastValueRecipient{
 							{
 								Name:    pointer("Co-Host #1"),
 								Type:    "node",
@@ -70,8 +70,8 @@ func TestMarshal(t *testing.T) {
 							},
 						},
 					},
-					GUID:   pointer(types.PodcastGUID("cda647ce-56b8-5d7c-9448-ba1993ab46b7")),
-					Medium: "podcast",
+					PodcastGUID:   pointer(types.PodcastGUID("cda647ce-56b8-5d7c-9448-ba1993ab46b7")),
+					PodcastMedium: "podcast",
 					Items: []types.Item{
 						{
 							Title: "Hello Again",
@@ -82,18 +82,18 @@ func TestMarshal(t *testing.T) {
 							},
 							GUID:    "hello-again",
 							PubDate: types.Date(time.Date(2021, time.July, 10, 9, 3, 59, 0, time.UTC)),
-							Image: &types.Image{
+							ITunesImage: &types.ITunesImage{
 								URL: "https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png",
 							},
-							Type: "full",
-							Transcript: &types.Transcript{
+							ITunesType: "full",
+							PodcastTranscript: &types.PodcastTranscript{
 								URL:          "https://rssblue.com/@bookworm-podcast/hello-again/transcript.vtt",
 								MimetypeName: "text/vtt",
 							},
-							Value: &types.Value{
+							PodcastValue: &types.PodcastValue{
 								Type:   "lightning",
 								Method: "keysend",
-								Recipients: []types.ValueRecipient{
+								Recipients: []types.PodcastValueRecipient{
 									{
 										Name:    pointer("Host"),
 										Type:    "node",
@@ -116,20 +116,20 @@ func TestMarshal(t *testing.T) {
 								MimetypeName: "audio/mpeg",
 								Length:       1024,
 							},
-							GUID:        "hello-world",
-							PubDate:     types.Date(time.Date(2021, time.July, 8, 15, 20, 10, 0, time.UTC)),
-							Description: pointer(types.Description("This is my <em>first</em> episode!")),
-							IsExplicit:  true,
-							Type:        "full",
-							Transcript: &types.Transcript{
+							GUID:           "hello-world",
+							PubDate:        types.Date(time.Date(2021, time.July, 8, 15, 20, 10, 0, time.UTC)),
+							Description:    pointer(types.Description("This is my <em>first</em> episode!")),
+							ITunesExplicit: true,
+							ITunesType:     "full",
+							PodcastTranscript: &types.PodcastTranscript{
 								URL:          "https://rssblue.com/@bookworm-podcast/hello-world/transcript.srt",
 								MimetypeName: "application/x-subrip",
 							},
-							Chapters: &types.Chapters{
+							PodcastChapters: &types.PodcastChapters{
 								URL:          "https://rssblue.com/@bookworm-podcast/hello-world/chapters.json",
 								MimetypeName: "application/json+chapters",
 							},
-							Location: &types.Location{
+							PodcastLocation: &types.PodcastLocation{
 								Geo:      pointer("geo:39.7837304,-100.445882;u=3900000"),
 								OSM:      pointer("R148838"),
 								Location: "Gitmo Nation",
@@ -200,26 +200,26 @@ func TestMarshal(t *testing.T) {
 				Channel: types.Channel{
 					Title:       "World Explorer Podcast",
 					Description: types.Description("Very interesting podcast."),
-					Image: types.Image{
+					ITunesImage: types.ITunesImage{
 						URL: "https://rssblue.com/@world-explorer-podcast/cover-art.jpg",
 					},
 					Language: "fr",
-					Category: types.Category{
+					ITunesCategory: types.ITunesCategory{
 						Category: "Fiction",
 					},
 					Author: "John Doe",
-					Owner: types.Owner{
+					ITunesOwner: types.ITunesOwner{
 						Name:         "John Doe",
 						EmailAddress: "john@example.com",
 					},
-					Type: "serial",
-					Location: &types.Location{
+					ITunesType: "serial",
+					PodcastLocation: &types.PodcastLocation{
 						Geo:      pointer("geo:30.2672,97.7431"),
 						OSM:      pointer("R113314"),
 						Location: "Austin, TX",
 					},
-					GUID:   pointer(types.PodcastGUID("96b952d9-06b2-5489-a3f3-d371473121fa")),
-					Medium: "music",
+					PodcastGUID:   pointer(types.PodcastGUID("96b952d9-06b2-5489-a3f3-d371473121fa")),
+					PodcastMedium: "music",
 				},
 			},
 			marshalled: `<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:podcast="https://podcastindex.org/namespace/1.0">
