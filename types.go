@@ -5,6 +5,8 @@ import (
 	"time"
 )
 
+// RSS is the root element of podcast's RSS feed, denoting the namespaces and
+// the version of the protocol.
 type RSS struct {
 	XMLName             xml.Name             `xml:"rss"`
 	Version             RSSVersion           `xml:",attr"`
@@ -15,6 +17,7 @@ type RSS struct {
 	Channel             Channel
 }
 
+// Channel represents the podcast's feed.
 type Channel struct {
 	XMLName     xml.Name    `xml:"channel"`
 	Title       string      `xml:"title"`
@@ -32,66 +35,73 @@ type Channel struct {
 	Location    *Location
 	Fundings    []Funding
 	Value       *Value
-	GUID        PodcastGUID
-	Medium      string `xml:"podcast:medium"`
+	GUID        *PodcastGUID `xml:"podcast:guid"`
+	Medium      string       `xml:"podcast:medium"`
 	Items       []Item
 }
 
-type PodcastGUID struct {
-	XMLName xml.Name `xml:"podcast:guid"`
-	GUID    string   `xml:",chardata"`
+// PodcastGUID is the global identifier for a podcast. Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#guid
+type PodcastGUID string
+
+func (podcastGUID PodcastGUID) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return e.EncodeElement(struct {
+		XMLName xml.Name `xml:"podcast:guid"`
+		GUID    string   `xml:",chardata"`
+	}{
+		GUID: string(podcastGUID),
+	}, start)
 }
 
+// Owner is used for owner's contact information.
 type Owner struct {
 	XMLName      xml.Name `xml:"itunes:owner"`
 	Name         string   `xml:"itunes:name"`
 	EmailAddress string   `xml:"itunes:email"`
 }
 
-type (
-	Description    string
-	descriptionXML struct {
-		Description string `xml:",cdata"`
-	}
-)
+// Description is used for the podcast's or episode's description.
+type Description string
 
 func (d Description) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return e.EncodeElement(descriptionXML{Description: string(d)}, start)
+	return e.EncodeElement(struct {
+		Description string `xml:",cdata"`
+	}{
+		Description: string(d),
+	}, start)
 }
 
-func (description *Description) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	var descriptionStruct descriptionXML
-	err := d.DecodeElement(&descriptionStruct, &start)
-	if err != nil {
-		return err
-	}
-
-	*description = Description(descriptionStruct.Description)
-	return nil
-}
-
+// Category denotes podcast's category information.
 type Category struct {
-	XMLName     xml.Name `xml:"itunes:category"`
-	Category    string   `xml:"text,attr"`
-	Subcategory *Subcategory
+	XMLName     xml.Name     `xml:"itunes:category"`
+	Category    string       `xml:"text,attr"`
+	Subcategory *Subcategory `xml:"itunes:category"`
 }
 
-type Subcategory struct {
-	XMLName     xml.Name `xml:"itunes:category"`
-	Subcategory string   `xml:"text,attr"`
+// Subcategory is more granural; it is a subset of Category.
+type Subcategory string
+
+func (s Subcategory) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return e.EncodeElement(struct {
+		Category string `xml:"text,attr"`
+	}{
+		Category: string(s),
+	}, start)
 }
 
+// Image is podcast's or episode's artwork.
 type Image struct {
 	XMLName xml.Name `xml:"itunes:image"`
-	Href    string   `xml:"href,attr"`
+	URL     string   `xml:"href,attr"`
 }
 
+// Item represents episode of a podcast.
 type Item struct {
 	XMLName       xml.Name `xml:"item"`
 	Title         string   `xml:"title"`
 	Enclosure     Enclosure
 	GUID          string       `xml:"guid"`
-	PubDate       PubDate      `xml:"pubDate"`
+	PubDate       Date         `xml:"pubDate"`
 	Description   *Description `xml:"description"`
 	Duration      *int64       `xml:"itunes:duration"`
 	Link          *string      `xml:"link"`
@@ -106,30 +116,16 @@ type Item struct {
 	Value         *Value
 }
 
-type PubDate time.Time
+// Date is used to format the publish date of an episode.
+type Date time.Time
 
-const pubDateFormat = "Mon, 2 Jan 2006 15:04:05 GMT"
-
-func (pd PubDate) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (pd Date) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	t := time.Time(pd)
-	v := t.Format(pubDateFormat)
+	v := t.Format("Mon, 2 Jan 2006 15:04:05 GMT")
 	return e.EncodeElement(v, start)
 }
 
-func (pd *PubDate) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	var s string
-	err := d.DecodeElement(&s, &start)
-	if err != nil {
-		return err
-	}
-	t, err := time.Parse(pubDateFormat, s)
-	if err != nil {
-		return err
-	}
-	*pd = PubDate(t)
-	return nil
-}
-
+// Enclosure is used to link to the episode's media file.
 type Enclosure struct {
 	XMLName      xml.Name `xml:"enclosure"`
 	URL          string   `xml:"url,attr"`
@@ -137,21 +133,24 @@ type Enclosure struct {
 	MimetypeName string   `xml:"type,attr"`
 }
 
-// See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md>
+// Transcript denotes episode's transcript. Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#transcript
 type Transcript struct {
 	XMLName      xml.Name `xml:"podcast:transcript"`
 	URL          string   `xml:"url,attr"`
 	MimetypeName string   `xml:"type,attr"`
 }
 
-// See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md>
+// Chapters denotes episode's chapters. Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#chapters
 type Chapters struct {
 	XMLName      xml.Name `xml:"podcast:chapters"`
 	URL          string   `xml:"url,attr"`
 	MimetypeName string   `xml:"type,attr"`
 }
 
-// See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/value/value.md>
+// Value enables to describe Value 4 Value payments. Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#value
 type Value struct {
 	XMLName    xml.Name `xml:"podcast:value"`
 	Type       string   `xml:"type,attr"`
@@ -160,16 +159,13 @@ type Value struct {
 	Recipients []ValueRecipient
 }
 
-// See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md>
+// Locked tells podcast hosting platforms whether they are allowed to import
+// the feed. Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#locked
 type Locked struct {
 	XMLName  xml.Name `xml:"podcast:locked"`
 	Owner    string
 	IsLocked bool
-}
-
-type locked struct {
-	Owner    string `xml:"owner,attr"`
-	IsLocked string `xml:",chardata"`
 }
 
 func (l Locked) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
@@ -177,23 +173,18 @@ func (l Locked) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if l.IsLocked {
 		strBool = "yes"
 	}
-	return e.EncodeElement(locked{Owner: l.Owner, IsLocked: strBool}, start)
+	return e.EncodeElement(struct {
+		Owner    string `xml:"owner,attr"`
+		IsLocked string `xml:",chardata"`
+	}{
+		Owner:    l.Owner,
+		IsLocked: strBool,
+	}, start)
 }
 
-func (l *Locked) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	var isLockedStruct locked
-	err := d.DecodeElement(&isLockedStruct, &start)
-	if err != nil {
-		return err
-	}
-	if isLockedStruct.IsLocked == "yes" {
-		l.IsLocked = true
-	}
-	l.Owner = isLockedStruct.Owner
-	return nil
-}
-
-// See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md>
+// Location describes editorial focus of podcast's or episode's content. Read
+// more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#location
 type Location struct {
 	XMLName  xml.Name `xml:"podcast:location"`
 	Geo      *string  `xml:"geo,attr"`
@@ -201,14 +192,17 @@ type Location struct {
 	Location string   `xml:",chardata"`
 }
 
-// See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md>
+// Funding denotes donation/funding links. Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#value
 type Funding struct {
 	XMLName xml.Name `xml:"podcast:funding"`
 	URL     string   `xml:"url,attr"`
 	Caption string   `xml:",chardata"`
 }
 
-// See <https://github.com/Podcastindex-org/podcast-namespace/blob/main/value/value.md>
+// ValueRecipient describes the recipient of Value 4 Value payments. Read more
+// at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#value
 type ValueRecipient struct {
 	XMLName     xml.Name `xml:"podcast:valueRecipient"`
 	Name        *string  `xml:"name,attr"`
@@ -218,9 +212,4 @@ type ValueRecipient struct {
 	Address     string   `xml:"address,attr"`
 	Split       uint     `xml:"split,attr"`
 	Fee         *bool    `xml:"bool,attr"`
-}
-
-type ItemImage struct {
-	XMLName xml.Name `xml:"itunes:image"`
-	Href    string   `xml:"href,attr"`
 }

@@ -20,14 +20,12 @@ func TestMarshal(t *testing.T) {
 					Title:       "Bookworm Podcast",
 					Description: types.Description("<strong>Description</strong>"),
 					Image: types.Image{
-						Href: "https://rssblue.com/@bookworm-podcast/cover-art.png",
+						URL: "https://rssblue.com/@bookworm-podcast/cover-art.png",
 					},
 					Language: "en",
 					Category: types.Category{
-						Category: "Society & Culture",
-						Subcategory: &types.Subcategory{
-							Subcategory: "Documentary",
-						},
+						Category:    "Society & Culture",
+						Subcategory: pointer(types.Subcategory("Documentary")),
 					},
 					IsExplicit: true,
 					Author:     "Jane Doe",
@@ -72,9 +70,7 @@ func TestMarshal(t *testing.T) {
 							},
 						},
 					},
-					GUID: types.PodcastGUID{
-						GUID: "cda647ce-56b8-5d7c-9448-ba1993ab46b7",
-					},
+					GUID:   pointer(types.PodcastGUID("cda647ce-56b8-5d7c-9448-ba1993ab46b7")),
 					Medium: "podcast",
 					Items: []types.Item{
 						{
@@ -85,9 +81,9 @@ func TestMarshal(t *testing.T) {
 								Length:       2048,
 							},
 							GUID:    "hello-again",
-							PubDate: types.PubDate(time.Date(2021, time.July, 10, 9, 3, 59, 0, time.UTC)),
+							PubDate: types.Date(time.Date(2021, time.July, 10, 9, 3, 59, 0, time.UTC)),
 							Image: &types.Image{
-								Href: "https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png",
+								URL: "https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png",
 							},
 							Type: "full",
 							Transcript: &types.Transcript{
@@ -121,7 +117,7 @@ func TestMarshal(t *testing.T) {
 								Length:       1024,
 							},
 							GUID:        "hello-world",
-							PubDate:     types.PubDate(time.Date(2021, time.July, 8, 15, 20, 10, 0, time.UTC)),
+							PubDate:     types.Date(time.Date(2021, time.July, 8, 15, 20, 10, 0, time.UTC)),
 							Description: pointer(types.Description("This is my <em>first</em> episode!")),
 							IsExplicit:  true,
 							Type:        "full",
@@ -205,7 +201,7 @@ func TestMarshal(t *testing.T) {
 					Title:       "World Explorer Podcast",
 					Description: types.Description("Very interesting podcast."),
 					Image: types.Image{
-						Href: "https://rssblue.com/@world-explorer-podcast/cover-art.jpg",
+						URL: "https://rssblue.com/@world-explorer-podcast/cover-art.jpg",
 					},
 					Language: "fr",
 					Category: types.Category{
@@ -222,9 +218,7 @@ func TestMarshal(t *testing.T) {
 						OSM:      pointer("R113314"),
 						Location: "Austin, TX",
 					},
-					GUID: types.PodcastGUID{
-						GUID: "96b952d9-06b2-5489-a3f3-d371473121fa",
-					},
+					GUID:   pointer(types.PodcastGUID("96b952d9-06b2-5489-a3f3-d371473121fa")),
 					Medium: "music",
 				},
 			},
