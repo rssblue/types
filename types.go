@@ -20,44 +20,44 @@ type RSS struct {
 // Channel represents the podcast's feed.
 type Channel struct {
 	XMLName         xml.Name    `xml:"channel"`
-	Title           string      `xml:"title"`
+	Copyright       *string     `xml:"copyright"`
 	Description     Description `xml:"description"`
-	ITunesImage     ITunesImage
-	Language        string `xml:"language"`
+	Language        string      `xml:"language"`
+	Link            *string     `xml:"link"`
+	Title           string      `xml:"title"`
+	ITunesAuthor    string      `xml:"itunes:author"`
 	ITunesCategory  ITunesCategory
-	ITunesExplicit  bool    `xml:"itunes:explicit"`
-	Author          string  `xml:"itunes:author"`
-	Website         *string `xml:"link"`
+	ITunesExplicit  bool `xml:"itunes:explicit"`
+	ITunesImage     ITunesImage
 	ITunesOwner     ITunesOwner
-	ITunesType      string  `xml:"itunes:type"`
-	Copyright       *string `xml:"copyright"`
-	PodcastLocked   *PodcastLocked
-	PodcastLocation *PodcastLocation
+	ITunesType      string `xml:"itunes:type"`
 	PodcastFundings []PodcastFunding
-	PodcastValue    *PodcastValue
 	PodcastGUID     *PodcastGUID `xml:"podcast:guid"`
-	PodcastMedium   string       `xml:"podcast:medium"`
+	PodcastLocation *PodcastLocation
+	PodcastLocked   *PodcastLocked
+	PodcastMedium   string `xml:"podcast:medium"`
+	PodcastValue    *PodcastValue
 	Items           []Item
 }
 
 // Item represents episode of a podcast.
 type Item struct {
-	XMLName             xml.Name `xml:"item"`
-	Title               string   `xml:"title"`
-	Enclosure           Enclosure
-	GUID                string       `xml:"guid"`
-	PubDate             Date         `xml:"pubDate"`
+	XMLName             xml.Name     `xml:"item"`
 	Description         *Description `xml:"description"`
-	ITunesDuration      *int64       `xml:"itunes:duration"`
-	Link                *string      `xml:"link"`
+	Enclosure           Enclosure
+	GUID                string  `xml:"guid"`
+	Link                *string `xml:"link"`
+	PubDate             Date    `xml:"pubDate"`
+	Title               string  `xml:"title"`
+	ITunesDuration      *int64  `xml:"itunes:duration"`
+	ITunesEpisodeNumber *int64  `xml:"itunes:episode"`
+	ITunesEpisodeType   string  `xml:"itunes:episodeType"`
+	ITunesExplicit      bool    `xml:"itunes:explicit"`
 	ITunesImage         *ITunesImage
-	ITunesExplicit      bool   `xml:"itunes:explicit"`
-	ITunesEpisodeNumber *int64 `xml:"itunes:episode"`
 	ITunesSeasonNumber  *int64 `xml:"itunes:season"`
-	ITunesType          string `xml:"itunes:episodeType"`
-	PodcastTranscript   *PodcastTranscript
 	PodcastChapters     *PodcastChapters
 	PodcastLocation     *PodcastLocation
+	PodcastTranscript   *PodcastTranscript
 	PodcastValue        *PodcastValue
 }
 
