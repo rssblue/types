@@ -2,6 +2,8 @@ package types
 
 import (
 	"encoding/xml"
+	"fmt"
+	"strconv"
 )
 
 // PodcastNamespace is the Podcasting 2.0 namespace.
@@ -97,10 +99,50 @@ func (l PodcastLocked) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 // Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#location
 type PodcastLocation struct {
-	XMLName  xml.Name `xml:"podcast:location"`
-	Geo      *string  `xml:"geo,attr"`
-	OSM      *string  `xml:"osm,attr"`
-	Location string   `xml:",chardata"`
+	XMLName  xml.Name    `xml:"podcast:location"`
+	Geo      *PodcastGeo `xml:",attr"`
+	OSM      *PodcastOSM `xml:"osm,attr"`
+	Location string      `xml:",chardata"`
+}
+
+type PodcastGeo struct {
+	Latitude    float64
+	Longitude   float64
+	Altitude    *float64
+	Uncertainty *float64
+}
+
+// PodcastGeo is a geo URI, conforming to RFC 5870.
+func (geo PodcastGeo) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	s := fmt.Sprintf("geo:%s,%s", removeTrailingZeros(geo.Latitude), removeTrailingZeros(geo.Longitude))
+	if geo.Altitude != nil {
+		s += fmt.Sprintf(",%s", removeTrailingZeros(*geo.Altitude))
+	}
+	if geo.Uncertainty != nil {
+		s += fmt.Sprintf(";u=%s", removeTrailingZeros(*geo.Uncertainty))
+	}
+
+	return xml.Attr{Name: xml.Name{Local: "geo"}, Value: s}, nil
+}
+
+// PodcastOSM encodes OpenStreetMap location information.
+type PodcastOSM struct {
+	Type      rune
+	FeatureID uint
+	Revision  *uint
+}
+
+func (osm PodcastOSM) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	s := fmt.Sprintf("%c%d", osm.Type, osm.FeatureID)
+	if osm.Revision != nil {
+		s += fmt.Sprintf("#%d", *osm.Revision)
+	}
+
+	return xml.Attr{Name: xml.Name{Local: "osm"}, Value: s}, nil
+}
+
+func removeTrailingZeros(f float64) string {
+	return strconv.FormatFloat(f, 'f', -1, 64)
 }
 
 // PodcastFunding denotes donation/funding links. Read more at

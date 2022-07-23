@@ -130,8 +130,15 @@ func TestMarshal(t *testing.T) {
 								MimetypeName: "application/json+chapters",
 							},
 							PodcastLocation: &types.PodcastLocation{
-								Geo:      pointer("geo:39.7837304,-100.445882;u=3900000"),
-								OSM:      pointer("R148838"),
+								Geo: &types.PodcastGeo{
+									Latitude:    39.7837304,
+									Longitude:   -100.445882,
+									Uncertainty: pointer(3900000.0),
+								},
+								OSM: &types.PodcastOSM{
+									Type:      'R',
+									FeatureID: 148838,
+								},
 								Location: "Gitmo Nation",
 							},
 						},
@@ -214,8 +221,14 @@ func TestMarshal(t *testing.T) {
 					},
 					ITunesType: "serial",
 					PodcastLocation: &types.PodcastLocation{
-						Geo:      pointer("geo:30.2672,97.7431"),
-						OSM:      pointer("R113314"),
+						Geo: &types.PodcastGeo{
+							Latitude:  30.2672,
+							Longitude: 97.7431,
+						},
+						OSM: &types.PodcastOSM{
+							Type:      'R',
+							FeatureID: 113314,
+						},
 						Location: "Austin, TX",
 					},
 					PodcastGUID:   pointer(types.PodcastGUID("96b952d9-06b2-5489-a3f3-d371473121fa")),
