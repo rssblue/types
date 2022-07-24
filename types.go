@@ -53,7 +53,7 @@ type Item struct {
 	ITunesDuration      *int64  `xml:"itunes:duration"`
 	ITunesEpisodeNumber *int64  `xml:"itunes:episode"`
 	ITunesEpisodeType   string  `xml:"itunes:episodeType"`
-	ITunesExplicit      bool    `xml:"itunes:explicit"`
+	ITunesExplicit      *bool   `xml:"itunes:explicit"`
 	ITunesImage         *ITunesImage
 	ITunesSeasonNumber  *int64 `xml:"itunes:season"`
 	PodcastChapters     *PodcastChapters

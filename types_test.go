@@ -112,6 +112,7 @@ func TestMarshal(t *testing.T) {
 								URL: "https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png",
 							},
 							ITunesEpisodeType: "full",
+							ITunesExplicit:    pointer(false),
 							PodcastTranscripts: []types.PodcastTranscript{
 								{
 									URL:      "https://rssblue.com/@bookworm-podcast/hello-again/transcript.vtt",
@@ -178,7 +179,7 @@ func TestMarshal(t *testing.T) {
 								Description: "This is my <em>first</em> episode!",
 								IsCDATA:     true,
 							},
-							ITunesExplicit:    true,
+							ITunesExplicit:    pointer(true),
 							ITunesEpisodeType: "full",
 							PodcastTranscripts: []types.PodcastTranscript{
 								{
@@ -260,7 +261,6 @@ func TestMarshal(t *testing.T) {
       <pubDate>Fri, 8 Jul 2022 15:20:10 GMT</pubDate>
       <title>Simple Episode</title>
       <itunes:episodeType>full</itunes:episodeType>
-      <itunes:explicit>false</itunes:explicit>
     </item>
     <item>
       <enclosure url="https://rssblue.com/@bookworm-podcast/hello-again/hello-again.mp3" length="2048" type="audio/mpeg"></enclosure>
