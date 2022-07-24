@@ -166,9 +166,8 @@ type PodcastSoundbite struct {
 	Title     *string  `xml:",innerxml"`
 }
 
-type (
-	Duration time.Duration
-)
+// Duration denotes timestamps and durations during a podcast episode.
+type Duration time.Duration
 
 const (
 	Hour        = Duration(time.Hour)
@@ -179,7 +178,6 @@ const (
 	Nanosecond  = Duration(time.Nanosecond)
 )
 
-// PodcastGeo is a geo URI, conforming to RFC 5870.
 func (duration Duration) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 	minutes := time.Duration(duration).Seconds()
 	s := removeTrailingZeros(minutes)
