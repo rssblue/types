@@ -57,6 +57,7 @@ type Item struct {
 	ITunesSeasonNumber  *int64 `xml:"itunes:season"`
 	PodcastChapters     *PodcastChapters
 	PodcastLocation     *PodcastLocation
+	PodcastSoundbites   []PodcastSoundbite
 	PodcastTranscripts  []PodcastTranscript
 	PodcastValue        *PodcastValue
 }

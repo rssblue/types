@@ -4,6 +4,8 @@ import (
 	"encoding/xml"
 	"fmt"
 	"strconv"
+	"strings"
+	"time"
 )
 
 // NamespacePodcast is the Podcasting 2.0 namespace.
@@ -153,4 +155,38 @@ type PodcastFunding struct {
 	XMLName xml.Name `xml:"podcast:funding"`
 	URL     string   `xml:"url,attr"`
 	Caption string   `xml:",chardata"`
+}
+
+// PodcastSoundbite denotes soundbite associated with an episode. Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#soundbite
+type PodcastSoundbite struct {
+	XMLName   xml.Name `xml:"podcast:soundbite"`
+	StartTime Duration `xml:"startTime,attr"`
+	Duration  Duration `xml:"duration,attr"`
+	Title     *string  `xml:",innerxml"`
+}
+
+type (
+	Duration time.Duration
+)
+
+const (
+	Hour        = Duration(time.Hour)
+	Minute      = Duration(time.Minute)
+	Second      = Duration(time.Second)
+	Millisecond = Duration(time.Millisecond)
+	Microsecond = Duration(time.Microsecond)
+	Nanosecond  = Duration(time.Nanosecond)
+)
+
+// PodcastGeo is a geo URI, conforming to RFC 5870.
+func (duration Duration) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	minutes := time.Duration(duration).Seconds()
+	s := removeTrailingZeros(minutes)
+	// // Add ".0" if does not exist.
+	if !strings.Contains(s, ".") {
+		s += ".0"
+	}
+
+	return xml.Attr{Name: xml.Name{Local: name.Local}, Value: s}, nil
 }

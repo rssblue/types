@@ -115,6 +115,17 @@ func TestMarshal(t *testing.T) {
 									},
 								},
 							},
+							PodcastSoundbites: []types.PodcastSoundbite{
+								{
+									StartTime: types.Minute + 13*types.Second,
+									Duration:  types.Minute,
+								},
+								{
+									StartTime: 20*types.Minute + 34*types.Second + 500*types.Millisecond,
+									Duration:  42*types.Second + 250*types.Millisecond,
+									Title:     pointer("Why the Podcast Namespace Matters"),
+								},
+							},
 						},
 						{
 							Title: "Hello World",
@@ -192,6 +203,8 @@ func TestMarshal(t *testing.T) {
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>false</itunes:explicit>
       <itunes:image href="https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png"></itunes:image>
+      <podcast:soundbite startTime="73.0" duration="60.0"></podcast:soundbite>
+      <podcast:soundbite startTime="1234.5" duration="42.25">Why the Podcast Namespace Matters</podcast:soundbite>
       <podcast:transcript url="https://rssblue.com/@bookworm-podcast/hello-again/transcript.vtt" type="text/vtt"></podcast:transcript>
       <podcast:value type="lightning" method="keysend">
         <podcast:valueRecipient name="Host" type="node" address="02d5c1bf8b940dc9cadca86d1b0a3c37fbe39cee4c7e839e33bef9174531d27f52" split="90"></podcast:valueRecipient>
