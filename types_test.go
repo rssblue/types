@@ -86,6 +86,20 @@ func TestMarshal(t *testing.T) {
 					},
 					Items: []types.Item{
 						{
+							Title: "Simple Episode",
+							Enclosure: types.Enclosure{
+								URL:      "https://rssblue.com/@bookworm-podcast/simple-episode/simple-episode.mp3",
+								Mimetype: "audio/mpeg",
+								Length:   1024,
+							},
+							GUID:    "simple-episode",
+							PubDate: types.Date(time.Date(2022, time.July, 8, 15, 20, 10, 0, time.UTC)),
+							Description: &types.Description{
+								Description: "This is a simple episode.",
+							},
+							ITunesEpisodeType: "full",
+						},
+						{
 							Title: "Hello Again",
 							Enclosure: types.Enclosure{
 								URL:      "https://rssblue.com/@bookworm-podcast/hello-again/hello-again.mp3",
@@ -239,6 +253,15 @@ func TestMarshal(t *testing.T) {
       <podcast:valueRecipient name="Co-Host #2" type="node" address="032f4ffbbafffbe51726ad3c164a3d0d37ec27bc67b29a159b0f49ae8ac21b8508" split="40"></podcast:valueRecipient>
       <podcast:valueRecipient name="Producer" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="10"></podcast:valueRecipient>
     </podcast:value>
+    <item>
+      <description>This is a simple episode.</description>
+      <enclosure url="https://rssblue.com/@bookworm-podcast/simple-episode/simple-episode.mp3" length="1024" type="audio/mpeg"></enclosure>
+      <guid>simple-episode</guid>
+      <pubDate>Fri, 8 Jul 2022 15:20:10 GMT</pubDate>
+      <title>Simple Episode</title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
     <item>
       <enclosure url="https://rssblue.com/@bookworm-podcast/hello-again/hello-again.mp3" length="2048" type="audio/mpeg"></enclosure>
       <guid>hello-again</guid>
