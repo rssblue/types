@@ -208,3 +208,11 @@ type PodcastSeason struct {
 	Number  int      `xml:",chardata"`
 	Name    *string  `xml:"name,attr"`
 }
+
+// PodcastEpisode exists largely for compatibility with PodcastSeason.
+// Read more at https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#season
+type PodcastEpisode struct {
+	XMLName xml.Name `xml:"podcast:episode"`
+	Number  float64  `xml:",chardata"`
+	Display *string  `xml:"display,attr"`
+}

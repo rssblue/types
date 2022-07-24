@@ -165,6 +165,9 @@ func TestMarshal(t *testing.T) {
 							PodcastSeason: &types.PodcastSeason{
 								Number: 5,
 							},
+							PodcastEpisode: &types.PodcastEpisode{
+								Number: 3,
+							},
 						},
 						{
 							Title: "Hello World",
@@ -222,6 +225,10 @@ func TestMarshal(t *testing.T) {
 								Number: 3,
 								Name:   pointer("Race for the Whitehouse 2020"),
 							},
+							PodcastEpisode: &types.PodcastEpisode{
+								Number:  315.5,
+								Display: pointer("Ch.3"),
+							},
 						},
 					},
 				},
@@ -270,6 +277,7 @@ func TestMarshal(t *testing.T) {
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>false</itunes:explicit>
       <itunes:image href="https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png"></itunes:image>
+      <podcast:episode>3</podcast:episode>
       <podcast:person role="guest" href="https://www.imdb.com/name/nm0427852888/" img="http://example.com/images/janedoe.jpg">Jane Doe</podcast:person>
       <podcast:person role="guest" href="https://www.wikipedia/alicebrown" img="http://example.com/images/alicebrown.jpg">Alice Brown</podcast:person>
       <podcast:season>5</podcast:season>
@@ -290,6 +298,7 @@ func TestMarshal(t *testing.T) {
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>true</itunes:explicit>
       <podcast:chapters url="https://rssblue.com/@bookworm-podcast/hello-world/chapters.json" type="application/json+chapters"></podcast:chapters>
+      <podcast:episode display="Ch.3">315.5</podcast:episode>
       <podcast:location geo="geo:39.7837304,-100.445882;u=3900000" osm="R148838">Gitmo Nation</podcast:location>
       <podcast:person group="writing" role="guest" href="https://www.wikipedia/alicebrown" img="http://example.com/images/alicebrown.jpg">Alice Brown</podcast:person>
       <podcast:person group="visuals" role="Cover Art Designer" href="https://example.com/artist/beckysmith">Becky Smith</podcast:person>
