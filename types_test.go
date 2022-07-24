@@ -77,6 +77,13 @@ func TestMarshal(t *testing.T) {
 					},
 					PodcastGUID:   pointer(types.PodcastGUID("cda647ce-56b8-5d7c-9448-ba1993ab46b7")),
 					PodcastMedium: "podcast",
+					PodcastPersons: []types.PodcastPerson{
+						{
+							Name:     "John Smith",
+							URL:      pointer("https://example.com/johnsmith/blog"),
+							ImageURL: pointer("http://example.com/images/johnsmith.jpg"),
+						},
+					},
 					Items: []types.Item{
 						{
 							Title: "Hello Again",
@@ -126,6 +133,20 @@ func TestMarshal(t *testing.T) {
 									Title:     pointer("Why the Podcast Namespace Matters"),
 								},
 							},
+							PodcastPersons: []types.PodcastPerson{
+								{
+									Name:     "Jane Doe",
+									Role:     pointer("guest"),
+									URL:      pointer("https://www.imdb.com/name/nm0427852888/"),
+									ImageURL: pointer("http://example.com/images/janedoe.jpg"),
+								},
+								{
+									Name:     "Alice Brown",
+									Role:     pointer("guest"),
+									URL:      pointer("https://www.wikipedia/alicebrown"),
+									ImageURL: pointer("http://example.com/images/alicebrown.jpg"),
+								},
+							},
 						},
 						{
 							Title: "Hello World",
@@ -164,6 +185,21 @@ func TestMarshal(t *testing.T) {
 								},
 								Location: "Gitmo Nation",
 							},
+							PodcastPersons: []types.PodcastPerson{
+								{
+									Name:     "Alice Brown",
+									Role:     pointer("guest"),
+									URL:      pointer("https://www.wikipedia/alicebrown"),
+									ImageURL: pointer("http://example.com/images/alicebrown.jpg"),
+									Group:    pointer("writing"),
+								},
+								{
+									Name:  "Becky Smith",
+									Role:  pointer("Cover Art Designer"),
+									URL:   pointer("https://example.com/artist/beckysmith"),
+									Group: pointer("visuals"),
+								},
+							},
 						},
 					},
 				},
@@ -190,6 +226,7 @@ func TestMarshal(t *testing.T) {
     <podcast:guid>cda647ce-56b8-5d7c-9448-ba1993ab46b7</podcast:guid>
     <podcast:locked owner="jane@example.com">no</podcast:locked>
     <podcast:medium>podcast</podcast:medium>
+    <podcast:person href="https://example.com/johnsmith/blog" img="http://example.com/images/johnsmith.jpg">John Smith</podcast:person>
     <podcast:value type="lightning" method="keysend">
       <podcast:valueRecipient name="Co-Host #1" type="node" address="02d5c1bf8b940dc9cadca86d1b0a3c37fbe39cee4c7e839e33bef9174531d27f52" split="50"></podcast:valueRecipient>
       <podcast:valueRecipient name="Co-Host #2" type="node" address="032f4ffbbafffbe51726ad3c164a3d0d37ec27bc67b29a159b0f49ae8ac21b8508" split="40"></podcast:valueRecipient>
@@ -203,6 +240,8 @@ func TestMarshal(t *testing.T) {
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>false</itunes:explicit>
       <itunes:image href="https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png"></itunes:image>
+      <podcast:person role="guest" href="https://www.imdb.com/name/nm0427852888/" img="http://example.com/images/janedoe.jpg">Jane Doe</podcast:person>
+      <podcast:person role="guest" href="https://www.wikipedia/alicebrown" img="http://example.com/images/alicebrown.jpg">Alice Brown</podcast:person>
       <podcast:soundbite startTime="73.0" duration="60.0"></podcast:soundbite>
       <podcast:soundbite startTime="1234.5" duration="42.25">Why the Podcast Namespace Matters</podcast:soundbite>
       <podcast:transcript url="https://rssblue.com/@bookworm-podcast/hello-again/transcript.vtt" type="text/vtt"></podcast:transcript>
@@ -221,6 +260,8 @@ func TestMarshal(t *testing.T) {
       <itunes:explicit>true</itunes:explicit>
       <podcast:chapters url="https://rssblue.com/@bookworm-podcast/hello-world/chapters.json" type="application/json+chapters"></podcast:chapters>
       <podcast:location geo="geo:39.7837304,-100.445882;u=3900000" osm="R148838">Gitmo Nation</podcast:location>
+      <podcast:person group="writing" role="guest" href="https://www.wikipedia/alicebrown" img="http://example.com/images/alicebrown.jpg">Alice Brown</podcast:person>
+      <podcast:person group="visuals" role="Cover Art Designer" href="https://example.com/artist/beckysmith">Becky Smith</podcast:person>
       <podcast:transcript url="https://rssblue.com/@bookworm-podcast/hello-world/transcript.srt" type="application/x-subrip"></podcast:transcript>
     </item>
   </channel>

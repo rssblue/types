@@ -188,3 +188,14 @@ func (duration Duration) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 
 	return xml.Attr{Name: xml.Name{Local: name.Local}, Value: s}, nil
 }
+
+// PodcastPerson specifies a person of interest to the podcast. Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#person
+type PodcastPerson struct {
+	XMLName  xml.Name `xml:"podcast:person"`
+	Name     string   `xml:",innerxml"`
+	Group    *string  `xml:"group,attr"`
+	Role     *string  `xml:"role,attr"`
+	URL      *string  `xml:"href,attr"`
+	ImageURL *string  `xml:"img,attr"`
+}

@@ -36,6 +36,7 @@ type Channel struct {
 	PodcastLocation  *PodcastLocation
 	PodcastLocked    *PodcastLocked
 	PodcastMedium    string `xml:"podcast:medium"`
+	PodcastPersons   []PodcastPerson
 	PodcastValue     *PodcastValue
 	Items            []Item
 }
@@ -57,6 +58,7 @@ type Item struct {
 	ITunesSeasonNumber  *int64 `xml:"itunes:season"`
 	PodcastChapters     *PodcastChapters
 	PodcastLocation     *PodcastLocation
+	PodcastPersons      []PodcastPerson
 	PodcastSoundbites   []PodcastSoundbite
 	PodcastTranscripts  []PodcastTranscript
 	PodcastValue        *PodcastValue
