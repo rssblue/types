@@ -37,6 +37,7 @@ type Channel struct {
 	PodcastLocked    *PodcastLocked
 	PodcastMedium    string `xml:"podcast:medium"`
 	PodcastPersons   []PodcastPerson
+	PodcastTrailers  []PodcastTrailer
 	PodcastValue     *PodcastValue
 	Items            []Item
 }
@@ -73,4 +74,10 @@ func (pd Date) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	t := time.Time(pd)
 	v := t.Format("Mon, 2 Jan 2006 15:04:05 GMT")
 	return e.EncodeElement(v, start)
+}
+
+func (pd Date) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	t := time.Time(pd)
+	v := t.Format("Mon, 2 Jan 2006 15:04:05 GMT")
+	return xml.Attr{Name: name, Value: v}, nil
 }

@@ -84,6 +84,23 @@ func TestMarshal(t *testing.T) {
 							ImageURL: pointer("http://example.com/images/johnsmith.jpg"),
 						},
 					},
+					PodcastTrailers: []types.PodcastTrailer{
+						{
+							Title:    "Coming April 1st, 2021",
+							PubDate:  types.Date(time.Date(2021, time.April, 1, 8, 0, 0, 0, time.UTC)),
+							URL:      "https://example.org/trailers/teaser",
+							Mimetype: pointer("audio/mp3"),
+							Length:   pointer[int64](12345678),
+						},
+						{
+							Title:    "Season 4: Race for the Whitehouse",
+							PubDate:  types.Date(time.Date(2021, time.April, 1, 8, 0, 0, 0, time.UTC)),
+							URL:      "https://example.org/trailers/season4teaser",
+							Mimetype: pointer("video/mp4"),
+							Length:   pointer[int64](12345678),
+							Season:   pointer(4),
+						},
+					},
 					Items: []types.Item{
 						{
 							Title: "Simple Episode",
@@ -256,6 +273,8 @@ func TestMarshal(t *testing.T) {
     <podcast:locked owner="jane@example.com">no</podcast:locked>
     <podcast:medium>podcast</podcast:medium>
     <podcast:person href="https://example.com/johnsmith/blog" img="http://example.com/images/johnsmith.jpg">John Smith</podcast:person>
+    <podcast:trailer pubdate="Thu, 01 Apr 2021 08:00:00 GMT" url="https://example.org/trailers/teaser" length="12345678" type="audio/mp3">Coming April 1st, 2021</podcast:trailer>
+    <podcast:trailer pubdate="Thu, 01 Apr 2021 08:00:00 GMT" url="https://example.org/trailers/season4teaser" length="12345678" type="video/mp4" season="4">Season 4: Race for the Whitehouse</podcast:trailer>
     <podcast:value type="lightning" method="keysend">
       <podcast:valueRecipient name="Co-Host #1" type="node" address="02d5c1bf8b940dc9cadca86d1b0a3c37fbe39cee4c7e839e33bef9174531d27f52" split="50"></podcast:valueRecipient>
       <podcast:valueRecipient name="Co-Host #2" type="node" address="032f4ffbbafffbe51726ad3c164a3d0d37ec27bc67b29a159b0f49ae8ac21b8508" split="40"></podcast:valueRecipient>

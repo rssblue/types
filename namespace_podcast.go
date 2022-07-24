@@ -217,3 +217,17 @@ type PodcastEpisode struct {
 	Number  float64  `xml:",chardata"`
 	Display *string  `xml:"display,attr"`
 }
+
+// PodcastTrailer is used to define the location of an audio or video file to
+// be used as a trailer for the entire podcast or a specific season. Read more
+// at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#trailer
+type PodcastTrailer struct {
+	XMLName  xml.Name `xml:"podcast:trailer"`
+	Title    string   `xml:",innerxml"`
+	PubDate  Date     `xml:"pubdate,attr"`
+	URL      string   `xml:"url,attr"`
+	Length   *int64   `xml:"length,attr"`
+	Mimetype *string  `xml:"type,attr"`
+	Season   *int     `xml:"season,attr"`
+}
