@@ -59,6 +59,7 @@ type Item struct {
 	PodcastChapters     *PodcastChapters
 	PodcastLocation     *PodcastLocation
 	PodcastPersons      []PodcastPerson
+	PodcastSeason       *PodcastSeason
 	PodcastSoundbites   []PodcastSoundbite
 	PodcastTranscripts  []PodcastTranscript
 	PodcastValue        *PodcastValue

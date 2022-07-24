@@ -199,3 +199,12 @@ type PodcastPerson struct {
 	URL      *string  `xml:"href,attr"`
 	ImageURL *string  `xml:"img,attr"`
 }
+
+// PodcastSeason is used for identifying which episodes in a podcast are part
+// of a particular "season". Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#season
+type PodcastSeason struct {
+	XMLName xml.Name `xml:"podcast:season"`
+	Number  int      `xml:",chardata"`
+	Name    *string  `xml:"name,attr"`
+}

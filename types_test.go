@@ -147,6 +147,9 @@ func TestMarshal(t *testing.T) {
 									ImageURL: pointer("http://example.com/images/alicebrown.jpg"),
 								},
 							},
+							PodcastSeason: &types.PodcastSeason{
+								Number: 5,
+							},
 						},
 						{
 							Title: "Hello World",
@@ -200,6 +203,10 @@ func TestMarshal(t *testing.T) {
 									Group: pointer("visuals"),
 								},
 							},
+							PodcastSeason: &types.PodcastSeason{
+								Number: 3,
+								Name:   pointer("Race for the Whitehouse 2020"),
+							},
 						},
 					},
 				},
@@ -242,6 +249,7 @@ func TestMarshal(t *testing.T) {
       <itunes:image href="https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png"></itunes:image>
       <podcast:person role="guest" href="https://www.imdb.com/name/nm0427852888/" img="http://example.com/images/janedoe.jpg">Jane Doe</podcast:person>
       <podcast:person role="guest" href="https://www.wikipedia/alicebrown" img="http://example.com/images/alicebrown.jpg">Alice Brown</podcast:person>
+      <podcast:season>5</podcast:season>
       <podcast:soundbite startTime="73.0" duration="60.0"></podcast:soundbite>
       <podcast:soundbite startTime="1234.5" duration="42.25">Why the Podcast Namespace Matters</podcast:soundbite>
       <podcast:transcript url="https://rssblue.com/@bookworm-podcast/hello-again/transcript.vtt" type="text/vtt"></podcast:transcript>
@@ -262,6 +270,7 @@ func TestMarshal(t *testing.T) {
       <podcast:location geo="geo:39.7837304,-100.445882;u=3900000" osm="R148838">Gitmo Nation</podcast:location>
       <podcast:person group="writing" role="guest" href="https://www.wikipedia/alicebrown" img="http://example.com/images/alicebrown.jpg">Alice Brown</podcast:person>
       <podcast:person group="visuals" role="Cover Art Designer" href="https://example.com/artist/beckysmith">Becky Smith</podcast:person>
+      <podcast:season name="Race for the Whitehouse 2020">3</podcast:season>
       <podcast:transcript url="https://rssblue.com/@bookworm-podcast/hello-world/transcript.srt" type="application/x-subrip"></podcast:transcript>
     </item>
   </channel>
