@@ -91,9 +91,11 @@ func TestMarshal(t *testing.T) {
 								URL: "https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png",
 							},
 							ITunesEpisodeType: "full",
-							PodcastTranscript: &types.PodcastTranscript{
-								URL:      "https://rssblue.com/@bookworm-podcast/hello-again/transcript.vtt",
-								Mimetype: "text/vtt",
+							PodcastTranscripts: []types.PodcastTranscript{
+								{
+									URL:      "https://rssblue.com/@bookworm-podcast/hello-again/transcript.vtt",
+									Mimetype: "text/vtt",
+								},
 							},
 							PodcastValue: &types.PodcastValue{
 								Type:   "lightning",
@@ -129,9 +131,11 @@ func TestMarshal(t *testing.T) {
 							},
 							ITunesExplicit:    true,
 							ITunesEpisodeType: "full",
-							PodcastTranscript: &types.PodcastTranscript{
-								URL:      "https://rssblue.com/@bookworm-podcast/hello-world/transcript.srt",
-								Mimetype: "application/x-subrip",
+							PodcastTranscripts: []types.PodcastTranscript{
+								{
+									URL:      "https://rssblue.com/@bookworm-podcast/hello-world/transcript.srt",
+									Mimetype: "application/x-subrip",
+								},
 							},
 							PodcastChapters: &types.PodcastChapters{
 								URL:      "https://rssblue.com/@bookworm-podcast/hello-world/chapters.json",

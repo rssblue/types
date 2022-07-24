@@ -38,6 +38,8 @@ type PodcastTranscript struct {
 	XMLName  xml.Name `xml:"podcast:transcript"`
 	URL      string   `xml:"url,attr"`
 	Mimetype string   `xml:"type,attr"`
+	Language *string  `xml:"language,attr"`
+	Rel      *string  `xml:"rel,attr"`
 }
 
 // PodcastChapters denotes episode's chapters. Read more at
