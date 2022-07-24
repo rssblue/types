@@ -284,7 +284,7 @@ func TestMarshal(t *testing.T) {
       <description>This is a simple episode.</description>
       <enclosure url="https://rssblue.com/@bookworm-podcast/simple-episode/simple-episode.mp3" length="1024" type="audio/mpeg"></enclosure>
       <guid>simple-episode</guid>
-      <pubDate>Fri, 8 Jul 2022 15:20:10 GMT</pubDate>
+      <pubDate>Fri, 08 Jul 2022 15:20:10 GMT</pubDate>
       <title>Simple Episode</title>
       <itunes:episodeType>full</itunes:episodeType>
     </item>
@@ -312,7 +312,7 @@ func TestMarshal(t *testing.T) {
       <description><![CDATA[This is my <em>first</em> episode!]]></description>
       <enclosure url="https://rssblue.com/@bookworm-podcast/hello-world/hello-world.mp3" length="1024" type="audio/mpeg"></enclosure>
       <guid>hello-world</guid>
-      <pubDate>Thu, 8 Jul 2021 15:20:10 GMT</pubDate>
+      <pubDate>Thu, 08 Jul 2021 15:20:10 GMT</pubDate>
       <title>Hello World</title>
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>true</itunes:explicit>
