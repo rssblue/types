@@ -47,7 +47,7 @@ type Item struct {
 	XMLName             xml.Name     `xml:"item"`
 	Description         *Description `xml:"description"`
 	Enclosure           Enclosure
-	GUID                string  `xml:"guid"`
+	GUID                GUID
 	Link                *string `xml:"link"`
 	PubDate             Date    `xml:"pubDate"`
 	Title               string  `xml:"title"`

@@ -109,7 +109,10 @@ func TestMarshal(t *testing.T) {
 								Mimetype: "audio/mpeg",
 								Length:   1024,
 							},
-							GUID:    "simple-episode",
+							GUID: types.GUID{
+								GUID:        "https://rssblue.com/@bookworm-podcast/simple-episode",
+								IsPermaLink: pointer(true),
+							},
 							PubDate: types.Date(time.Date(2022, time.July, 8, 15, 20, 10, 0, time.UTC)),
 							Description: &types.Description{
 								Description: "This is a simple episode.",
@@ -123,7 +126,10 @@ func TestMarshal(t *testing.T) {
 								Mimetype: "audio/mpeg",
 								Length:   2048,
 							},
-							GUID:    "hello-again",
+							GUID: types.GUID{
+								GUID:        "hello-again",
+								IsPermaLink: pointer(false),
+							},
 							PubDate: types.Date(time.Date(2021, time.July, 10, 9, 3, 59, 0, time.UTC)),
 							ITunesImage: &types.ITunesImage{
 								URL: "https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png",
@@ -193,7 +199,9 @@ func TestMarshal(t *testing.T) {
 								Mimetype: "audio/mpeg",
 								Length:   1024,
 							},
-							GUID:    "hello-world",
+							GUID: types.GUID{
+								GUID: "https://rssblue.com/@bookworm-podcast/hello-world",
+							},
 							PubDate: types.Date(time.Date(2021, time.July, 8, 15, 20, 10, 0, time.UTC)),
 							Description: &types.Description{
 								Description: "This is my <em>first</em> episode!",
@@ -283,14 +291,14 @@ func TestMarshal(t *testing.T) {
     <item>
       <description>This is a simple episode.</description>
       <enclosure url="https://rssblue.com/@bookworm-podcast/simple-episode/simple-episode.mp3" length="1024" type="audio/mpeg"></enclosure>
-      <guid>simple-episode</guid>
+      <guid isPermaLink="true">https://rssblue.com/@bookworm-podcast/simple-episode</guid>
       <pubDate>Fri, 08 Jul 2022 15:20:10 GMT</pubDate>
       <title>Simple Episode</title>
       <itunes:episodeType>full</itunes:episodeType>
     </item>
     <item>
       <enclosure url="https://rssblue.com/@bookworm-podcast/hello-again/hello-again.mp3" length="2048" type="audio/mpeg"></enclosure>
-      <guid>hello-again</guid>
+      <guid isPermaLink="false">hello-again</guid>
       <pubDate>Sat, 10 Jul 2021 09:03:59 GMT</pubDate>
       <title>Hello Again</title>
       <itunes:episodeType>full</itunes:episodeType>
@@ -311,7 +319,7 @@ func TestMarshal(t *testing.T) {
     <item>
       <description><![CDATA[This is my <em>first</em> episode!]]></description>
       <enclosure url="https://rssblue.com/@bookworm-podcast/hello-world/hello-world.mp3" length="1024" type="audio/mpeg"></enclosure>
-      <guid>hello-world</guid>
+      <guid>https://rssblue.com/@bookworm-podcast/hello-world</guid>
       <pubDate>Thu, 08 Jul 2021 15:20:10 GMT</pubDate>
       <title>Hello World</title>
       <itunes:episodeType>full</itunes:episodeType>

@@ -43,3 +43,10 @@ type Enclosure struct {
 	Length   int64    `xml:"length,attr"`
 	Mimetype string   `xml:"type,attr"`
 }
+
+// GUID is a unique identifier for an episode.
+type GUID struct {
+	XMLName     xml.Name `xml:"guid"`
+	GUID        string   `xml:",chardata"`
+	IsPermaLink *bool    `xml:"isPermaLink,attr"`
+}
