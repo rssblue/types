@@ -22,6 +22,7 @@ func TestMarshal(t *testing.T) {
 						Description: "<strong>Description</strong>",
 						IsCDATA:     true,
 					},
+					Generator: pointer("RSS Blue v1.0.0"),
 					ITunesImage: types.ITunesImage{
 						URL: "https://rssblue.com/@bookworm-podcast/cover-art.png",
 					},
@@ -262,6 +263,7 @@ func TestMarshal(t *testing.T) {
   <channel>
     <copyright>© RSS Blue</copyright>
     <description><![CDATA[<strong>Description</strong>]]></description>
+    <generator>RSS Blue v1.0.0</generator>
     <language>en</language>
     <link>https://example.com</link>
     <title>Bookworm Podcast</title>

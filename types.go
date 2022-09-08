@@ -22,6 +22,7 @@ type Channel struct {
 	XMLName          xml.Name    `xml:"channel"`
 	Copyright        *string     `xml:"copyright"`
 	Description      Description `xml:"description"`
+	Generator        *string     `xml:"generator"`
 	Language         string      `xml:"language"`
 	Link             *string     `xml:"link"`
 	Title            string      `xml:"title"`
