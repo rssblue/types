@@ -410,6 +410,16 @@ func TestMarshal(t *testing.T) {
 		if diff != "" {
 			t.Errorf("%d: mismatch (-want +got):\n%s", i, diff)
 		}
+
+		// Unmarshalling
+		unmarshalled, err := types.Unmarshal(test.marshalled)
+		if err != nil {
+			t.Errorf("%d: unexpected error: %v", i, err)
+		}
+		diff = cmp.Diff(test.unmarshalled, unmarshalled)
+		if diff != "" {
+			t.Errorf("%d: mismatch (-want +got):\n%s", i, diff)
+		}
 	}
 }
 

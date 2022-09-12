@@ -82,3 +82,7 @@ func (pd Date) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 	v := t.Format("Mon, 02 Jan 2006 15:04:05 GMT")
 	return xml.Attr{Name: name, Value: v}, nil
 }
+
+func Unmarshal(marshaled string) (RSS, error) {
+	return RSS{}, nil
+}
