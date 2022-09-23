@@ -26,7 +26,8 @@ type Channel struct {
 	Language         string      `xml:"language"`
 	Link             *string     `xml:"link"`
 	Title            string      `xml:"title"`
-	ITunesAuthor     string      `xml:"itunes:author"`
+	ContentEncoded   *ContentEncoded
+	ITunesAuthor     string `xml:"itunes:author"`
 	ITunesCategories []ITunesCategory
 	ITunesExplicit   bool `xml:"itunes:explicit"`
 	ITunesImage      ITunesImage
@@ -52,10 +53,11 @@ type Item struct {
 	Link                *string `xml:"link"`
 	PubDate             Date    `xml:"pubDate"`
 	Title               string  `xml:"title"`
-	ITunesDuration      *int64  `xml:"itunes:duration"`
-	ITunesEpisodeNumber *int64  `xml:"itunes:episode"`
-	ITunesEpisodeType   string  `xml:"itunes:episodeType"`
-	ITunesExplicit      *bool   `xml:"itunes:explicit"`
+	ContentEncoded      *ContentEncoded
+	ITunesDuration      *int64 `xml:"itunes:duration"`
+	ITunesEpisodeNumber *int64 `xml:"itunes:episode"`
+	ITunesEpisodeType   string `xml:"itunes:episodeType"`
+	ITunesExplicit      *bool  `xml:"itunes:explicit"`
 	ITunesImage         *ITunesImage
 	ITunesSeasonNumber  *int64 `xml:"itunes:season"`
 	PodcastChapters     *PodcastChapters

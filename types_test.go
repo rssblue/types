@@ -22,6 +22,10 @@ func TestMarshal(t *testing.T) {
 						Description: "<strong>Description</strong>",
 						IsCDATA:     true,
 					},
+					ContentEncoded: &types.ContentEncoded{
+						Encoded: "<strong>Description</strong>",
+						IsCDATA: true,
+					},
 					Generator: pointer("RSS Blue v1.0.0"),
 					ITunesImage: types.ITunesImage{
 						URL: "https://rssblue.com/@bookworm-podcast/cover-art.png",
@@ -117,6 +121,10 @@ func TestMarshal(t *testing.T) {
 							PubDate: types.Date(time.Date(2022, time.July, 8, 15, 20, 10, 0, time.UTC)),
 							Description: &types.Description{
 								Description: "This is a simple episode.",
+							},
+							ContentEncoded: &types.ContentEncoded{
+								Encoded: "This is a simple episode.",
+								IsCDATA: false,
 							},
 							ITunesEpisodeType: "full",
 						},
@@ -267,6 +275,7 @@ func TestMarshal(t *testing.T) {
     <language>en</language>
     <link>https://example.com</link>
     <title>Bookworm Podcast</title>
+    <content:encoded><![CDATA[<strong>Description</strong>]]></content:encoded>
     <itunes:author>Jane Doe</itunes:author>
     <itunes:category text="Society &amp; Culture">
       <itunes:category text="Documentary"></itunes:category>
@@ -296,6 +305,7 @@ func TestMarshal(t *testing.T) {
       <guid isPermaLink="true">https://rssblue.com/@bookworm-podcast/simple-episode</guid>
       <pubDate>Fri, 08 Jul 2022 15:20:10 GMT</pubDate>
       <title>Simple Episode</title>
+      <content:encoded>This is a simple episode.</content:encoded>
       <itunes:episodeType>full</itunes:episodeType>
     </item>
     <item>
