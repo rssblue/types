@@ -33,7 +33,7 @@ func (encoded ContentEncoded) MarshalXML(e *xml.Encoder, start xml.StartElement)
 		}, start)
 	}
 	return e.EncodeElement(struct {
-		Encoded string `xml:",innerxml"`
+		Encoded string `xml:",chardata"`
 	}{
 		Encoded: encoded.Encoded,
 	}, start)

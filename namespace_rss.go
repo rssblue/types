@@ -30,7 +30,7 @@ func (d Description) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 		}, start)
 	}
 	return e.EncodeElement(struct {
-		Description string `xml:",innerxml"`
+		Description string `xml:",chardata"`
 	}{
 		Description: d.Description,
 	}, start)

@@ -163,7 +163,7 @@ type PodcastSoundbite struct {
 	XMLName   xml.Name `xml:"podcast:soundbite"`
 	StartTime Duration `xml:"startTime,attr"`
 	Duration  Duration `xml:"duration,attr"`
-	Title     *string  `xml:",innerxml"`
+	Title     *string  `xml:",chardata"`
 }
 
 // Duration denotes timestamps and durations during a podcast episode.
@@ -193,7 +193,7 @@ func (duration Duration) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#person
 type PodcastPerson struct {
 	XMLName  xml.Name `xml:"podcast:person"`
-	Name     string   `xml:",innerxml"`
+	Name     string   `xml:",chardata"`
 	Group    *string  `xml:"group,attr"`
 	Role     *string  `xml:"role,attr"`
 	URL      *string  `xml:"href,attr"`
@@ -224,7 +224,7 @@ type PodcastEpisode struct {
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#trailer
 type PodcastTrailer struct {
 	XMLName  xml.Name `xml:"podcast:trailer"`
-	Title    string   `xml:",innerxml"`
+	Title    string   `xml:",chardata"`
 	PubDate  Date     `xml:"pubdate,attr"`
 	URL      string   `xml:"url,attr"`
 	Length   *int64   `xml:"length,attr"`

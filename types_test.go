@@ -120,10 +120,10 @@ func TestMarshal(t *testing.T) {
 							},
 							PubDate: types.Date(time.Date(2022, time.July, 8, 15, 20, 10, 0, time.UTC)),
 							Description: &types.Description{
-								Description: "This is a simple episode.",
+								Description: "This is a simple episode & its description.",
 							},
 							ContentEncoded: &types.ContentEncoded{
-								Encoded: "This is a simple episode.",
+								Encoded: "This is a simple episode & its description.",
 								IsCDATA: false,
 							},
 							ITunesEpisodeType: "full",
@@ -300,12 +300,12 @@ func TestMarshal(t *testing.T) {
       <podcast:valueRecipient name="Producer" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="10"></podcast:valueRecipient>
     </podcast:value>
     <item>
-      <description>This is a simple episode.</description>
+      <description>This is a simple episode &amp; its description.</description>
       <enclosure url="https://rssblue.com/@bookworm-podcast/simple-episode/simple-episode.mp3" length="1024" type="audio/mpeg"></enclosure>
       <guid isPermaLink="true">https://rssblue.com/@bookworm-podcast/simple-episode</guid>
       <pubDate>Fri, 08 Jul 2022 15:20:10 GMT</pubDate>
       <title>Simple Episode</title>
-      <content:encoded>This is a simple episode.</content:encoded>
+      <content:encoded>This is a simple episode &amp; its description.</content:encoded>
       <itunes:episodeType>full</itunes:episodeType>
     </item>
     <item>
