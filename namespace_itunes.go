@@ -5,17 +5,7 @@ import (
 )
 
 // NamespaceITunes is the iTunes namespace.
-type NamespaceITunes string
-
-func (ns *NamespaceITunes) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
-	if ns != nil {
-		if *ns == "" {
-			return xml.Attr{}, nil
-		}
-		return xml.Attr{Name: xml.Name{Local: "xmlns:itunes"}, Value: string(*ns)}, nil
-	}
-	return xml.Attr{Name: xml.Name{Local: "xmlns:itunes"}, Value: "http://www.itunes.com/dtds/podcast-1.0.dtd"}, nil
-}
+const NamespaceITunes string = "http://www.itunes.com/dtds/podcast-1.0.dtd"
 
 // ITunesOwner is used for owner's contact information.
 type ITunesOwner struct {

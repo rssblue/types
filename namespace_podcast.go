@@ -9,17 +9,7 @@ import (
 )
 
 // NamespacePodcast is the Podcasting 2.0 namespace.
-type NamespacePodcast string
-
-func (ns *NamespacePodcast) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
-	if ns != nil {
-		if *ns == "" {
-			return xml.Attr{}, nil
-		}
-		return xml.Attr{Name: xml.Name{Local: "xmlns:podcast"}, Value: string(*ns)}, nil
-	}
-	return xml.Attr{Name: xml.Name{Local: "xmlns:podcast"}, Value: "https://podcastindex.org/namespace/1.0"}, nil
-}
+const NamespacePodcast string = "https://podcastindex.org/namespace/1.0"
 
 // PodcastGUID is the global identifier for a podcast. Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#guid
