@@ -16,6 +16,10 @@ func TestMarshal(t *testing.T) {
 	}{
 		{
 			unmarshalled: types.RSS{
+				NamespaceContent:    true,
+				NamespaceGooglePlay: true,
+				NamespaceITunes:     true,
+				NamespacePodcast:    true,
 				Channel: types.Channel{
 					Title: "Bookworm Podcast",
 					Description: types.Description{
@@ -349,7 +353,9 @@ func TestMarshal(t *testing.T) {
 		},
 		{
 			unmarshalled: types.RSS{
-				NamespaceContent: pointer(types.NamespaceContent("")), // Should remove the namespace.
+				NamespaceContent: true,
+				NamespaceITunes:  true,
+				NamespacePodcast: true,
 				Channel: types.Channel{
 					Title: "World Explorer Podcast",
 					Description: types.Description{
@@ -385,7 +391,7 @@ func TestMarshal(t *testing.T) {
 					PodcastMedium: "music",
 				},
 			},
-			marshalled: `<rss version="2.0" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+			marshalled: `<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
   <channel>
     <description>Very interesting podcast.</description>
     <language>fr</language>

@@ -2,19 +2,45 @@ package types
 
 import (
 	"encoding/xml"
+	"fmt"
 	"time"
 )
 
 // RSS is the root element of podcast's RSS feed, denoting the namespaces and
 // the version of the protocol.
 type RSS struct {
-	XMLName             xml.Name             `xml:"rss"`
-	Version             RSSVersion           `xml:",attr"`
-	NamespaceContent    *NamespaceContent    `xml:"xmlns:content,attr"`
-	NamespaceGooglePlay *NamespaceGooglePlay `xml:",attr"`
-	NamespaceITunes     *NamespaceITunes     `xml:",attr"`
-	NamespacePodcast    *NamespacePodcast    `xml:"xmlns:podcast,attr"`
+	XMLName             xml.Name   `xml:"rss"`
+	Version             RSSVersion `xml:",attr"`
+	NamespaceContent    NSBool     `xml:",attr"`
+	NamespaceGooglePlay NSBool     `xml:",attr"`
+	NamespaceITunes     NSBool     `xml:",attr"`
+	NamespacePodcast    NSBool     `xml:",attr"`
 	Channel             Channel
+}
+
+type NSBool bool
+
+func (isPresent *NSBool) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	if isPresent == nil {
+		return xml.Attr{}, nil
+	}
+
+	if !*isPresent {
+		return xml.Attr{}, nil
+	}
+
+	switch name.Local {
+	case "NamespaceContent":
+		return xml.Attr{Name: xml.Name{Local: "xmlns:content"}, Value: "http://purl.org/rss/1.0/modules/content/"}, nil
+	case "NamespaceGooglePlay":
+		return xml.Attr{Name: xml.Name{Local: "xmlns:googleplay"}, Value: "http://www.google.com/schemas/play-podcasts/1.0"}, nil
+	case "NamespaceITunes":
+		return xml.Attr{Name: xml.Name{Local: "xmlns:itunes"}, Value: "http://www.itunes.com/dtds/podcast-1.0.dtd"}, nil
+	case "NamespacePodcast":
+		return xml.Attr{Name: xml.Name{Local: "xmlns:podcast"}, Value: "https://podcastindex.org/namespace/1.0"}, nil
+	default:
+		return xml.Attr{}, fmt.Errorf("unrecognised attribute name \"%s\"", name.Local)
+	}
 }
 
 // Channel represents the podcast's feed.
