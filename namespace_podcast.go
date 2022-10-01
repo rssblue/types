@@ -15,15 +15,6 @@ const NamespacePodcast string = "https://podcastindex.org/namespace/1.0"
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#guid
 type PodcastGUID string
 
-func (podcastGUID PodcastGUID) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return e.EncodeElement(struct {
-		XMLName xml.Name `xml:"podcast:guid"`
-		GUID    string   `xml:",chardata"`
-	}{
-		GUID: string(podcastGUID),
-	}, start)
-}
-
 // PodcastTranscript denotes episode's transcript. Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#transcript
 type PodcastTranscript struct {
