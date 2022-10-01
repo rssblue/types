@@ -221,3 +221,18 @@ type PodcastTrailer struct {
 	Mimetype *string  `xml:"type,attr"`
 	Season   *int     `xml:"season,attr"`
 }
+
+// PodcastMedium tells what the content contained within the feed is. Read more
+// at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#medium
+type PodcastMedium string
+
+var (
+	PodcastMediumPodcast    PodcastMedium = "podcast"
+	PodcastMediumMusic      PodcastMedium = "music"
+	PodcastMediumVideo      PodcastMedium = "video"
+	PodcastMediumFilm       PodcastMedium = "film"
+	PodcastMediumAudioBook  PodcastMedium = "audiobook"
+	PodcastMediumNewsletter PodcastMedium = "newsletter"
+	PodcastMediumBlog       PodcastMedium = "blog"
+)

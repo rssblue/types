@@ -63,7 +63,7 @@ type Channel struct {
 	PodcastGUID      *PodcastGUID `xml:"podcast:guid"`
 	PodcastLocation  *PodcastLocation
 	PodcastLocked    *PodcastLocked
-	PodcastMedium    string `xml:"podcast:medium"`
+	PodcastMedium    *PodcastMedium `xml:"podcast:medium"`
 	PodcastPersons   []PodcastPerson
 	PodcastTrailers  []PodcastTrailer
 	PodcastValue     *PodcastValue

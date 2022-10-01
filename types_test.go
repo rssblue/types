@@ -85,7 +85,7 @@ func TestMarshal(t *testing.T) {
 						},
 					},
 					PodcastGUID:   pointer(types.PodcastGUID("cda647ce-56b8-5d7c-9448-ba1993ab46b7")),
-					PodcastMedium: "podcast",
+					PodcastMedium: &types.PodcastMediumPodcast,
 					PodcastPersons: []types.PodcastPerson{
 						{
 							Name:     "John Smith",
@@ -388,7 +388,7 @@ func TestMarshal(t *testing.T) {
 						Location: "Austin, TX",
 					},
 					PodcastGUID:   pointer(types.PodcastGUID("96b952d9-06b2-5489-a3f3-d371473121fa")),
-					PodcastMedium: "music",
+					PodcastMedium: &types.PodcastMediumMusic,
 				},
 			},
 			marshalled: `<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
