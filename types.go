@@ -57,6 +57,7 @@ type Channel struct {
 	ITunesCategories []ITunesCategory
 	ITunesExplicit   bool `xml:"itunes:explicit"`
 	ITunesImage      ITunesImage
+	ITunesNewFeedURL *string `xml:"itunes:new-feed-url"`
 	ITunesOwner      ITunesOwner
 	ITunesType       string `xml:"itunes:type"`
 	PodcastFundings  []PodcastFunding

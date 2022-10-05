@@ -364,7 +364,8 @@ func TestMarshal(t *testing.T) {
 					ITunesImage: types.ITunesImage{
 						URL: "https://rssblue.com/@world-explorer-podcast/cover-art.jpg",
 					},
-					Language: "fr",
+					ITunesNewFeedURL: pointer("https://example.com/new-feed"),
+					Language:         "fr",
 					ITunesCategories: []types.ITunesCategory{
 						{
 							Category: "Fiction",
@@ -403,6 +404,7 @@ func TestMarshal(t *testing.T) {
     </itunes:category>
     <itunes:explicit>false</itunes:explicit>
     <itunes:image href="https://rssblue.com/@world-explorer-podcast/cover-art.jpg"></itunes:image>
+    <itunes:new-feed-url>https://example.com/new-feed</itunes:new-feed-url>
     <itunes:owner>
       <itunes:name>John Doe</itunes:name>
       <itunes:email>john@example.com</itunes:email>
