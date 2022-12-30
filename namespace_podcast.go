@@ -62,7 +62,7 @@ type PodcastValueRecipient struct {
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#locked
 type PodcastLocked struct {
 	XMLName  xml.Name `xml:"podcast:locked"`
-	Owner    string
+	Owner    *string
 	IsLocked bool
 }
 
@@ -72,8 +72,8 @@ func (l PodcastLocked) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 		strBool = "yes"
 	}
 	return e.EncodeElement(struct {
-		Owner    string `xml:"owner,attr"`
-		IsLocked string `xml:",chardata"`
+		Owner    *string `xml:"owner,attr"`
+		IsLocked string  `xml:",chardata"`
 	}{
 		Owner:    l.Owner,
 		IsLocked: strBool,

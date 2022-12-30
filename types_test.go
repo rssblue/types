@@ -44,14 +44,14 @@ func TestMarshal(t *testing.T) {
 					ITunesExplicit: true,
 					ITunesAuthor:   "Jane Doe",
 					Link:           pointer("https://example.com"),
-					ITunesOwner: types.ITunesOwner{
+					ITunesOwner: &types.ITunesOwner{
 						Name:  "Jane Doe",
 						Email: "jane@example.com",
 					},
 					ITunesType: "episodic",
 					Copyright:  pointer("© RSS Blue"),
 					PodcastLocked: &types.PodcastLocked{
-						Owner:    "jane@example.com",
+						Owner:    pointer("jane@example.com"),
 						IsLocked: false,
 					},
 					PodcastFundings: []types.PodcastFunding{
@@ -376,7 +376,7 @@ func TestMarshal(t *testing.T) {
 						},
 					},
 					ITunesAuthor: "John Doe",
-					ITunesOwner: types.ITunesOwner{
+					ITunesOwner: &types.ITunesOwner{
 						Name:  "John Doe",
 						Email: "john@example.com",
 					},
