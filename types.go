@@ -45,18 +45,18 @@ func (isPresent *NSBool) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 
 // Channel represents the podcast's feed.
 type Channel struct {
-	XMLName          xml.Name    `xml:"channel"`
-	Copyright        *string     `xml:"copyright"`
-	Description      Description `xml:"description"`
-	Generator        *string     `xml:"generator"`
-	Language         string      `xml:"language"`
-	Link             *string     `xml:"link"`
-	Title            string      `xml:"title"`
+	XMLName          xml.Name     `xml:"channel"`
+	Copyright        *string      `xml:"copyright"`
+	Description      *Description `xml:"description"`
+	Generator        *string      `xml:"generator"`
+	Language         *string      `xml:"language"`
+	Link             *string      `xml:"link"`
+	Title            *string      `xml:"title"`
 	ContentEncoded   *ContentEncoded
-	ITunesAuthor     string `xml:"itunes:author"`
+	ITunesAuthor     *string `xml:"itunes:author"`
 	ITunesCategories []ITunesCategory
-	ITunesExplicit   bool `xml:"itunes:explicit"`
-	ITunesImage      ITunesImage
+	ITunesExplicit   *bool `xml:"itunes:explicit"`
+	ITunesImage      *ITunesImage
 	ITunesNewFeedURL *string `xml:"itunes:new-feed-url"`
 	ITunesOwner      *ITunesOwner
 	ITunesType       string `xml:"itunes:type"`
@@ -75,16 +75,16 @@ type Channel struct {
 type Item struct {
 	XMLName             xml.Name     `xml:"item"`
 	Description         *Description `xml:"description"`
-	Enclosure           Enclosure
-	GUID                GUID
+	Enclosure           *Enclosure
+	GUID                *GUID
 	Link                *string `xml:"link"`
-	PubDate             Date    `xml:"pubDate"`
-	Title               string  `xml:"title"`
+	PubDate             *Date   `xml:"pubDate"`
+	Title               *string `xml:"title"`
 	ContentEncoded      *ContentEncoded
-	ITunesDuration      *int64 `xml:"itunes:duration"`
-	ITunesEpisodeNumber *int64 `xml:"itunes:episode"`
-	ITunesEpisodeType   string `xml:"itunes:episodeType"`
-	ITunesExplicit      *bool  `xml:"itunes:explicit"`
+	ITunesDuration      *int64  `xml:"itunes:duration"`
+	ITunesEpisodeNumber *int64  `xml:"itunes:episode"`
+	ITunesEpisodeType   *string `xml:"itunes:episodeType"`
+	ITunesExplicit      *bool   `xml:"itunes:explicit"`
 	ITunesImage         *ITunesImage
 	ITunesSeasonNumber  *int64 `xml:"itunes:season"`
 	PodcastChapters     *PodcastChapters
