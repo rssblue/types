@@ -48,7 +48,7 @@ func TestMarshal(t *testing.T) {
 						Name:  "Jane Doe",
 						Email: "jane@example.com",
 					},
-					ITunesType: "episodic",
+					ITunesType: pointer("episodic"),
 					Copyright:  pointer("© RSS Blue"),
 					PodcastLocked: &types.PodcastLocked{
 						Owner:    pointer("jane@example.com"),
@@ -380,7 +380,7 @@ func TestMarshal(t *testing.T) {
 						Name:  "John Doe",
 						Email: "john@example.com",
 					},
-					ITunesType: "serial",
+					ITunesType: pointer("serial"),
 					PodcastLocation: &types.PodcastLocation{
 						OSM: &types.PodcastOSM{
 							Type:      'R',

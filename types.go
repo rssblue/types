@@ -59,7 +59,7 @@ type Channel struct {
 	ITunesImage      *ITunesImage
 	ITunesNewFeedURL *string `xml:"itunes:new-feed-url"`
 	ITunesOwner      *ITunesOwner
-	ITunesType       string `xml:"itunes:type"`
+	ITunesType       *string `xml:"itunes:type"`
 	PodcastFundings  []PodcastFunding
 	PodcastGUID      *PodcastGUID `xml:"podcast:guid"`
 	PodcastLocation  *PodcastLocation
