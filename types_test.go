@@ -110,6 +110,15 @@ func TestMarshal(t *testing.T) {
 							Season:   pointer(4),
 						},
 					},
+					PodcastTXTs: []types.PodcastTXT{
+						{
+							TXT: "naj3eEZaWVVY9a38uhX8FekACyhtqP4JN",
+						},
+						{
+							TXT:     "S6lpp-7ZCn8-dZfGc-OoyaG",
+							Purpose: pointer("verify"),
+						},
+					},
 					Items: []types.Item{
 						{
 							Title: pointer("Simple Episode"),
@@ -296,6 +305,8 @@ func TestMarshal(t *testing.T) {
     <podcast:locked owner="jane@example.com">no</podcast:locked>
     <podcast:medium>podcast</podcast:medium>
     <podcast:person href="https://example.com/johnsmith/blog" img="http://example.com/images/johnsmith.jpg">John Smith</podcast:person>
+    <podcast:txt>naj3eEZaWVVY9a38uhX8FekACyhtqP4JN</podcast:txt>
+    <podcast:txt purpose="verify">S6lpp-7ZCn8-dZfGc-OoyaG</podcast:txt>
     <podcast:trailer pubdate="Thu, 01 Apr 2021 08:00:00 GMT" url="https://example.org/trailers/teaser" length="12345678" type="audio/mp3">Coming April 1st, 2021</podcast:trailer>
     <podcast:trailer pubdate="Thu, 01 Apr 2021 08:00:00 GMT" url="https://example.org/trailers/season4teaser" length="12345678" type="video/mp4" season="4">Season 4: Race for the Whitehouse</podcast:trailer>
     <podcast:value type="lightning" method="keysend">

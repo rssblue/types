@@ -227,3 +227,12 @@ var (
 	PodcastMediumNewsletter PodcastMedium = "newsletter"
 	PodcastMediumBlog       PodcastMedium = "blog"
 )
+
+// PodcastTXT is intended for free-form text and is modeled after the DNS "TXT"
+// record. Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#txt
+type PodcastTXT struct {
+	XMLName xml.Name `xml:"podcast:txt"`
+	TXT     string   `xml:",chardata"`
+	Purpose *string  `xml:"purpose,attr"`
+}
