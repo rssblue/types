@@ -11,6 +11,7 @@ import (
 type RSS struct {
 	XMLName             xml.Name   `xml:"rss"`
 	Version             RSSVersion `xml:",attr"`
+	NamespaceAtom       NSBool     `xml:",attr"`
 	NamespaceContent    NSBool     `xml:",attr"`
 	NamespaceGooglePlay NSBool     `xml:",attr"`
 	NamespaceITunes     NSBool     `xml:",attr"`
@@ -30,6 +31,8 @@ func (isPresent *NSBool) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 	}
 
 	switch name.Local {
+	case "NamespaceAtom":
+		return xml.Attr{Name: xml.Name{Local: "xmlns:atom"}, Value: NamespaceAtom}, nil
 	case "NamespaceContent":
 		return xml.Attr{Name: xml.Name{Local: "xmlns:content"}, Value: NamespaceContent}, nil
 	case "NamespaceGooglePlay":
@@ -52,6 +55,7 @@ type Channel struct {
 	Language         *string      `xml:"language"`
 	Link             *string      `xml:"link"`
 	Title            *string      `xml:"title"`
+	AtomLink         *AtomLink    `xml:"atom:link"`
 	ContentEncoded   *ContentEncoded
 	ITunesAuthor     *string `xml:"itunes:author"`
 	ITunesCategories []ITunesCategory

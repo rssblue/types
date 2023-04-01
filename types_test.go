@@ -16,6 +16,7 @@ func TestMarshal(t *testing.T) {
 	}{
 		{
 			unmarshalled: types.RSS{
+				NamespaceAtom:       true,
 				NamespaceContent:    true,
 				NamespaceGooglePlay: true,
 				NamespaceITunes:     true,
@@ -44,6 +45,11 @@ func TestMarshal(t *testing.T) {
 					ITunesExplicit: pointer(true),
 					ITunesAuthor:   pointer("Jane Doe"),
 					Link:           pointer("https://example.com"),
+					AtomLink: &types.AtomLink{
+						Href: "https://example.com/feed.xml",
+						Rel:  pointer("self"),
+						Type: pointer("application/rss+xml"),
+					},
 					ITunesOwner: &types.ITunesOwner{
 						Name:  "Jane Doe",
 						Email: "jane@example.com",
@@ -280,7 +286,7 @@ func TestMarshal(t *testing.T) {
 					},
 				},
 			},
-			marshalled: `<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+			marshalled: `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
   <channel>
     <copyright>© RSS Blue</copyright>
     <description><![CDATA[<strong>Description</strong>]]></description>
@@ -288,6 +294,7 @@ func TestMarshal(t *testing.T) {
     <language>en</language>
     <link>https://example.com</link>
     <title>Bookworm Podcast</title>
+    <atom:link href="https://example.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <content:encoded><![CDATA[<strong>Description</strong>]]></content:encoded>
     <itunes:author>Jane Doe</itunes:author>
     <itunes:category text="Society &amp; Culture">
