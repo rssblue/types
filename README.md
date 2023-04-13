@@ -28,19 +28,21 @@ import (
 
 func main() {
   rss := types.RSS{
+    NamespaceITunes:  true,
+    NamespacePodcast: true,
     Channel: types.Channel{
-      Title: "Bookworm Podcast",
-      Description: types.Description{
+      Title: pointer("Bookworm Podcast"),
+      Description: &types.Description{
         Description: "Podcast about <em>books</em>.",
         IsCDATA:     true,
       },
-      Language:     "en",
-      ITunesAuthor: "John",
-      ITunesOwner: types.ITunesOwner{
+      Language:     pointer("en"),
+      ITunesAuthor: pointer("John"),
+      ITunesOwner: &types.ITunesOwner{
         Name:  "John",
         Email: "john@example.com",
       },
-      ITunesImage: types.ITunesImage{
+      ITunesImage: &types.ITunesImage{
         URL: "https://example.com/cover-art.png",
       },
       ITunesCategories: []types.ITunesCategory{
@@ -48,18 +50,19 @@ func main() {
           Category: "Arts",
         },
       },
-      ITunesType: "episodic",
+      ITunesType:  pointer("episodic"),
+      PodcastGUID: pointer(types.PodcastGUID("cda647ce-56b8-5d7c-9448-ba1993ab46b7")),
       Items: []types.Item{
         {
-          Title: "Book Review: Moby-Dick",
-          Enclosure: types.Enclosure{
+          Title: pointer("Book Review: Moby-Dick"),
+          Enclosure: &types.Enclosure{
             URL:      "https://example.com/moby-dick.mp3",
             Length:   4096,
             Mimetype: "audio/mpeg",
           },
-          GUID:              "https://example.com/moby-dick",
-          ITunesEpisodeType: "full",
-          PubDate:           types.Date(time.Date(2022, time.July, 23, 10, 30, 0, 0, time.UTC)),
+          GUID:              &types.GUID{GUID: "https://example.com/moby-dick"},
+          ITunesEpisodeType: pointer("full"),
+          PubDate:           pointer(types.Date(time.Date(2022, time.July, 23, 10, 30, 0, 0, time.UTC))),
           PodcastLocation: &types.PodcastLocation{
             OSM: &types.PodcastOSM{
               Type:      'R',
@@ -77,36 +80,38 @@ func main() {
   }
 
   fmt.Printf("%s%s\n", xml.Header, output)
+
 }
 
+func pointer[T any](v T) *T {
+  return &v
+}
 ```
 
 ### Output
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
   <channel>
     <description><![CDATA[Podcast about <em>books</em>.]]></description>
     <language>en</language>
     <title>Bookworm Podcast</title>
     <itunes:author>John</itunes:author>
     <itunes:category text="Arts"></itunes:category>
-    <itunes:explicit>false</itunes:explicit>
     <itunes:image href="https://example.com/cover-art.png"></itunes:image>
     <itunes:owner>
       <itunes:name>John</itunes:name>
       <itunes:email>john@example.com</itunes:email>
     </itunes:owner>
     <itunes:type>episodic</itunes:type>
-    <podcast:medium></podcast:medium>
+    <podcast:guid>cda647ce-56b8-5d7c-9448-ba1993ab46b7</podcast:guid>
     <item>
       <enclosure url="https://example.com/moby-dick.mp3" length="4096" type="audio/mpeg"></enclosure>
       <guid>https://example.com/moby-dick</guid>
       <pubDate>Sat, 23 Jul 2022 10:30:00 GMT</pubDate>
       <title>Book Review: Moby-Dick</title>
       <itunes:episodeType>full</itunes:episodeType>
-      <itunes:explicit>false</itunes:explicit>
       <podcast:location osm="R2396248"></podcast:location>
     </item>
   </channel>
