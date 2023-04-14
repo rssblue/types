@@ -2,6 +2,7 @@ package types_test
 
 import (
 	"encoding/xml"
+	"net/url"
 	"testing"
 	"time"
 
@@ -21,6 +22,7 @@ func TestMarshal(t *testing.T) {
 				NamespaceGooglePlay: true,
 				NamespaceITunes:     true,
 				NamespacePodcast:    true,
+				NamespacePSC:        true,
 				Channel: types.Channel{
 					Title: pointer("Bookworm Podcast"),
 					Description: &types.Description{
@@ -146,6 +148,36 @@ func TestMarshal(t *testing.T) {
 								IsCDATA: false,
 							},
 							ITunesEpisodeType: pointer("full"),
+							PSCChapters: &types.PSCChapters{
+								Version: "1.2",
+								Chapters: []types.PSCChapter{
+									{
+										Start: 0,
+										Title: "Welcome",
+									},
+									{
+										Start: 3*time.Minute + 7*time.Second,
+										Title: "Introducing Podlove",
+										Href: &url.URL{
+											Scheme: "http",
+											Host:   "podlove.org",
+										},
+									},
+									{
+										Start: 8*time.Minute + 26*time.Second + 250*time.Millisecond,
+										Title: "Podlove WordPress Plugin",
+										Href: &url.URL{
+											Scheme: "http",
+											Host:   "podlove.org",
+											Path:   "podlove-podcast-publisher",
+										},
+									},
+									{
+										Start: 12*time.Minute + 42*time.Second,
+										Title: "Resumée",
+									},
+								},
+							},
 						},
 						{
 							Title: pointer("Hello Again"),
@@ -219,6 +251,23 @@ func TestMarshal(t *testing.T) {
 							PodcastEpisode: &types.PodcastEpisode{
 								Number: 3,
 							},
+							PSCChapters: &types.PSCChapters{
+								Version: "1.2",
+								Chapters: []types.PSCChapter{
+									{
+										Start: 0,
+										Title: "Introduction",
+									},
+									{
+										Start: time.Hour + 3*time.Minute + 7*time.Second + 500*time.Millisecond,
+										Title: "Break",
+									},
+									{
+										Start: 2*time.Hour + 3*time.Minute + 7*time.Second,
+										Title: "Conclusion",
+									},
+								},
+							},
 						},
 						{
 							Title: pointer("Hello World"),
@@ -286,7 +335,7 @@ func TestMarshal(t *testing.T) {
 					},
 				},
 			},
-			marshalled: `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+			marshalled: `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0" xmlns:psc="http://podlove.org/simple-chapters">
   <channel>
     <copyright>© RSS Blue</copyright>
     <description><![CDATA[<strong>Description</strong>]]></description>
@@ -329,6 +378,12 @@ func TestMarshal(t *testing.T) {
       <title>Simple Episode</title>
       <content:encoded>This is a simple episode &amp; its description.</content:encoded>
       <itunes:episodeType>full</itunes:episodeType>
+      <psc:chapters version="1.2">
+        <psc:chapter start="00:00" title="Welcome"></psc:chapter>
+        <psc:chapter start="03:07" title="Introducing Podlove" href="http://podlove.org"></psc:chapter>
+        <psc:chapter start="08:26.250" title="Podlove WordPress Plugin" href="http://podlove.org/podlove-podcast-publisher"></psc:chapter>
+        <psc:chapter start="12:42" title="Resumée"></psc:chapter>
+      </psc:chapters>
     </item>
     <item>
       <enclosure url="https://rssblue.com/@bookworm-podcast/hello-again/hello-again.mp3" length="2048" type="audio/mpeg"></enclosure>
@@ -349,6 +404,11 @@ func TestMarshal(t *testing.T) {
         <podcast:valueRecipient name="Host" type="node" address="02d5c1bf8b940dc9cadca86d1b0a3c37fbe39cee4c7e839e33bef9174531d27f52" split="90"></podcast:valueRecipient>
         <podcast:valueRecipient name="Producer" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="10"></podcast:valueRecipient>
       </podcast:value>
+      <psc:chapters version="1.2">
+        <psc:chapter start="00:00" title="Introduction"></psc:chapter>
+        <psc:chapter start="01:03:07.500" title="Break"></psc:chapter>
+        <psc:chapter start="02:03:07" title="Conclusion"></psc:chapter>
+      </psc:chapters>
     </item>
     <item>
       <description><![CDATA[This is my <em>first</em> episode!]]></description>

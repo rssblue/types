@@ -16,6 +16,7 @@ type RSS struct {
 	NamespaceGooglePlay NSBool     `xml:",attr"`
 	NamespaceITunes     NSBool     `xml:",attr"`
 	NamespacePodcast    NSBool     `xml:",attr"`
+	NamespacePSC        NSBool     `xml:",attr"`
 	Channel             Channel
 }
 
@@ -41,6 +42,8 @@ func (isPresent *NSBool) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 		return xml.Attr{Name: xml.Name{Local: "xmlns:itunes"}, Value: NamespaceITunes}, nil
 	case "NamespacePodcast":
 		return xml.Attr{Name: xml.Name{Local: "xmlns:podcast"}, Value: NamespacePodcast}, nil
+	case "NamespacePSC":
+		return xml.Attr{Name: xml.Name{Local: "xmlns:psc"}, Value: NamespacePSC}, nil
 	default:
 		return xml.Attr{}, fmt.Errorf("unrecognised attribute name \"%s\"", name.Local)
 	}
@@ -101,6 +104,7 @@ type Item struct {
 	PodcastTXTs         []PodcastTXT
 	PodcastTranscripts  []PodcastTranscript
 	PodcastValue        *PodcastValue
+	PSCChapters         *PSCChapters
 }
 
 // Date is used to format the publish date of an episode.
