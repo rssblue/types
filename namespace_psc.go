@@ -66,7 +66,5 @@ func formatChapterStart(start time.Duration) string {
 		str = fmt.Sprintf("%s.%03d", str, milliseconds)
 	}
 
-	fmt.Println("hours", hours, "minutes", minutes, "seconds", seconds, "milliseconds", milliseconds, "str", str)
-
 	return str
 }
