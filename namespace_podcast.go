@@ -236,3 +236,11 @@ type PodcastTXT struct {
 	TXT     string   `xml:",chardata"`
 	Purpose *string  `xml:"purpose,attr"`
 }
+
+// PodcastPodping allows feed owners to signal to aggregators that the feed sends out Podping notifications when changes are made to it.
+// Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#podping
+type PodcastPodping struct {
+	XMLName     xml.Name `xml:"podcast:podping"`
+	UsesPodping *bool    `xml:"usesPodping,attr"`
+}

@@ -73,6 +73,7 @@ type Channel struct {
 	PodcastLocked    *PodcastLocked
 	PodcastMedium    *PodcastMedium `xml:"podcast:medium"`
 	PodcastPersons   []PodcastPerson
+	PodcastPodping   *PodcastPodping
 	PodcastTXTs      []PodcastTXT
 	PodcastTrailers  []PodcastTrailer
 	PodcastValue     *PodcastValue
