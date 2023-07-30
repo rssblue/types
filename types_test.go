@@ -151,6 +151,7 @@ func TestMarshal(t *testing.T) {
 								IsCDATA: false,
 							},
 							ITunesEpisodeType: pointer("full"),
+							ITunesDuration:    pointer(types.ITunesDuration(10 * time.Minute)),
 							PSCChapters: &types.PSCChapters{
 								Version: "1.2",
 								Chapters: []types.PSCChapter{
@@ -205,6 +206,7 @@ func TestMarshal(t *testing.T) {
 									Mimetype: "text/vtt",
 								},
 							},
+							ITunesDuration: pointer(types.ITunesDuration(10*time.Minute + 70*time.Second + 1900*time.Millisecond)),
 							PodcastValue: &types.PodcastValue{
 								Type:   "lightning",
 								Method: "keysend",
@@ -381,6 +383,7 @@ func TestMarshal(t *testing.T) {
       <pubDate>Fri, 08 Jul 2022 15:20:10 GMT</pubDate>
       <title>Simple Episode</title>
       <content:encoded>This is a simple episode &amp; its description.</content:encoded>
+      <itunes:duration>600</itunes:duration>
       <itunes:episodeType>full</itunes:episodeType>
       <psc:chapters version="1.2">
         <psc:chapter start="00:00" title="Welcome"></psc:chapter>
@@ -394,6 +397,7 @@ func TestMarshal(t *testing.T) {
       <guid isPermaLink="false">hello-again</guid>
       <pubDate>Sat, 10 Jul 2021 09:03:59 GMT</pubDate>
       <title>Hello Again</title>
+      <itunes:duration>671</itunes:duration>
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>false</itunes:explicit>
       <itunes:image href="https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png"></itunes:image>

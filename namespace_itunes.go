@@ -2,6 +2,8 @@ package types
 
 import (
 	"encoding/xml"
+	"strconv"
+	"time"
 )
 
 // NamespaceITunes is the iTunes namespace.
@@ -36,4 +38,17 @@ func (s ITunesSubcategory) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 type ITunesImage struct {
 	XMLName xml.Name `xml:"itunes:image"`
 	URL     string   `xml:"href,attr"`
+}
+
+// ITunesDuration denotesthe duration of an episode.
+type ITunesDuration time.Duration
+
+func (d ITunesDuration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	numSeconds := int(time.Duration(d).Seconds())
+
+	return e.EncodeElement(struct {
+		Duration string `xml:",chardata"`
+	}{
+		Duration: strconv.Itoa(numSeconds),
+	}, start)
 }

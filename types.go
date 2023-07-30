@@ -90,10 +90,10 @@ type Item struct {
 	PubDate             *Date   `xml:"pubDate"`
 	Title               *string `xml:"title"`
 	ContentEncoded      *ContentEncoded
-	ITunesDuration      *int64  `xml:"itunes:duration"`
-	ITunesEpisodeNumber *int64  `xml:"itunes:episode"`
-	ITunesEpisodeType   *string `xml:"itunes:episodeType"`
-	ITunesExplicit      *bool   `xml:"itunes:explicit"`
+	ITunesDuration      *ITunesDuration `xml:"itunes:duration"`
+	ITunesEpisodeNumber *int64          `xml:"itunes:episode"`
+	ITunesEpisodeType   *string         `xml:"itunes:episodeType"`
+	ITunesExplicit      *bool           `xml:"itunes:explicit"`
 	ITunesImage         *ITunesImage
 	ITunesSeasonNumber  *int64 `xml:"itunes:season"`
 	PodcastChapters     *PodcastChapters
