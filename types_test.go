@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/google/uuid"
 	"github.com/rssblue/types"
 )
 
@@ -89,6 +90,29 @@ func TestMarshal(t *testing.T) {
 								Type:    "node",
 								Address: "03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a",
 								Split:   10,
+							},
+						},
+						ValueTimeSplits: []types.PodcastValueTimeSplit{
+							{
+								StartTime: types.DurationInteger(60 * time.Second),
+								Duration:  types.DurationInteger(237 * time.Second),
+								RemoteItem: types.PodcastRemoteItem{
+									ItemGUID: pointer("https://podcastindex.org/podcast/4148683#1"),
+									FeedGUID: uuid.MustParse("a94f5cc9-8c58-55fc-91fe-a324087a655b"),
+									Medium:   pointer(types.PodcastMediumMusic),
+								},
+								RemotePercentage: pointer[uint](95),
+							},
+							{
+								StartTime: types.DurationInteger(330 * time.Second),
+								Duration:  types.DurationInteger(53 * time.Second),
+								RemoteItem: types.PodcastRemoteItem{
+									ItemGUID: pointer("https://podcastindex.org/podcast/4148683#3"),
+									FeedGUID: uuid.MustParse("a94f5cc9-8c58-55fc-91fe-a324087a655b"),
+									Medium:   pointer(types.PodcastMediumMusic),
+								},
+								RemoteStartTime:  pointer(types.DurationInteger(174 * time.Second)),
+								RemotePercentage: pointer[uint](95),
 							},
 						},
 					},
@@ -375,6 +399,12 @@ func TestMarshal(t *testing.T) {
       <podcast:valueRecipient name="Co-Host #1" type="node" address="02d5c1bf8b940dc9cadca86d1b0a3c37fbe39cee4c7e839e33bef9174531d27f52" split="50"></podcast:valueRecipient>
       <podcast:valueRecipient name="Co-Host #2" type="node" address="032f4ffbbafffbe51726ad3c164a3d0d37ec27bc67b29a159b0f49ae8ac21b8508" split="40"></podcast:valueRecipient>
       <podcast:valueRecipient name="Producer" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="10"></podcast:valueRecipient>
+      <podcast:valueTimeSplit startTime="60" duration="237" remotePercentage="95">
+        <podcast:remoteItem itemGuid="https://podcastindex.org/podcast/4148683#1" feedGuid="a94f5cc9-8c58-55fc-91fe-a324087a655b" medium="music"></podcast:remoteItem>
+      </podcast:valueTimeSplit>
+      <podcast:valueTimeSplit startTime="330" duration="53" remoteStartTime="174" remotePercentage="95">
+        <podcast:remoteItem itemGuid="https://podcastindex.org/podcast/4148683#3" feedGuid="a94f5cc9-8c58-55fc-91fe-a324087a655b" medium="music"></podcast:remoteItem>
+      </podcast:valueTimeSplit>
     </podcast:value>
     <item>
       <description>This is a simple episode &amp; its description.</description>

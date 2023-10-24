@@ -3,9 +3,12 @@ package types
 import (
 	"encoding/xml"
 	"fmt"
+	"math"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 // NamespacePodcast is the Podcasting 2.0 namespace.
@@ -36,11 +39,12 @@ type PodcastChapters struct {
 // PodcastValue enables to describe Value 4 Value payments. Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#value
 type PodcastValue struct {
-	XMLName    xml.Name `xml:"podcast:value"`
-	Type       string   `xml:"type,attr"`
-	Method     string   `xml:"method,attr"`
-	Suggested  *float64 `xml:"suggested,attr,omitempty"`
-	Recipients []PodcastValueRecipient
+	XMLName         xml.Name `xml:"podcast:value"`
+	Type            string   `xml:"type,attr"`
+	Method          string   `xml:"method,attr"`
+	Suggested       *float64 `xml:"suggested,attr,omitempty"`
+	Recipients      []PodcastValueRecipient
+	ValueTimeSplits []PodcastValueTimeSplit
 }
 
 // PodcastValueRecipient describes the recipient of Value 4 Value payments.
@@ -55,6 +59,29 @@ type PodcastValueRecipient struct {
 	Address     string   `xml:"address,attr"`
 	Split       uint     `xml:"split,attr"`
 	Fee         *bool    `xml:"bool,attr"`
+}
+
+// PodcastValueTimeSplit describes value splits that are valid for a certain period of time
+// Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#value-time-split
+type PodcastValueTimeSplit struct {
+	XMLName          xml.Name         `xml:"podcast:valueTimeSplit"`
+	StartTime        DurationInteger  `xml:"startTime,attr"`
+	Duration         DurationInteger  `xml:"duration,attr"`
+	RemoteStartTime  *DurationInteger `xml:"remoteStartTime,attr,omitempty"`
+	RemotePercentage *uint            `xml:"remotePercentage,attr,omitempty"`
+	Recipients       []PodcastValueRecipient
+	RemoteItem       PodcastRemoteItem
+}
+
+// PodcastRemoteItem provides a way to "point" to another feed or item in it.
+// Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#remote-item
+type PodcastRemoteItem struct {
+	XMLName  xml.Name       `xml:"podcast:remoteItem"`
+	ItemGUID *string        `xml:"itemGuid,attr"`
+	FeedGUID uuid.UUID      `xml:"feedGuid,attr"`
+	Medium   *PodcastMedium `xml:"medium,attr"`
 }
 
 // PodcastLocked tells podcast hosting platforms whether they are allowed to import
@@ -166,6 +193,17 @@ func (duration Duration) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 	if !strings.Contains(s, ".") {
 		s += ".0"
 	}
+
+	return xml.Attr{Name: xml.Name{Local: name.Local}, Value: s}, nil
+}
+
+// DurationInteger denotes timestamps and durations during a podcast episode, but which are converted to integer seconds.
+type DurationInteger time.Duration
+
+func (duration DurationInteger) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	seconds := time.Duration(duration).Seconds()
+	seconds = math.Round(seconds)
+	s := strconv.Itoa(int(seconds))
 
 	return xml.Attr{Name: xml.Name{Local: name.Local}, Value: s}, nil
 }
