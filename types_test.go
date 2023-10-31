@@ -34,7 +34,9 @@ func TestMarshal(t *testing.T) {
 						Encoded: "<strong>Description</strong>",
 						IsCDATA: true,
 					},
-					Generator: pointer("RSS Blue v1.0.0"),
+					Generator:     pointer("RSS Blue v1.0.0"),
+					LastBuildDate: pointer(types.Date(time.Date(2023, time.October, 31, 11, 0, 0, 0, time.UTC))),
+
 					ITunesImage: &types.ITunesImage{
 						URL: "https://rssblue.com/@bookworm-podcast/cover-art.png",
 					},
@@ -370,6 +372,7 @@ func TestMarshal(t *testing.T) {
     <description><![CDATA[<strong>Description</strong>]]></description>
     <generator>RSS Blue v1.0.0</generator>
     <language>en</language>
+    <lastBuildDate>Tue, 31 Oct 2023 11:00:00 GMT</lastBuildDate>
     <link>https://example.com</link>
     <title>Bookworm Podcast</title>
     <atom:link href="https://example.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>

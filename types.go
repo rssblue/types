@@ -56,6 +56,7 @@ type Channel struct {
 	Description      *Description `xml:"description"`
 	Generator        *string      `xml:"generator"`
 	Language         *string      `xml:"language"`
+	LastBuildDate    *Date        `xml:"lastBuildDate"`
 	Link             *string      `xml:"link"`
 	Title            *string      `xml:"title"`
 	AtomLink         *AtomLink    `xml:"atom:link"`
