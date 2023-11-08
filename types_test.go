@@ -101,6 +101,7 @@ func TestMarshal(t *testing.T) {
 								RemoteItem: types.PodcastRemoteItem{
 									ItemGUID: pointer("https://podcastindex.org/podcast/4148683#1"),
 									FeedGUID: uuid.MustParse("a94f5cc9-8c58-55fc-91fe-a324087a655b"),
+									FeedURL:  pointer("https://feeds.podcastindex.org/Album-TourconVII.xml"),
 									Medium:   pointer(types.PodcastMediumMusic),
 								},
 								RemotePercentage: pointer[uint](95),
@@ -403,7 +404,7 @@ func TestMarshal(t *testing.T) {
       <podcast:valueRecipient name="Co-Host #2" type="node" address="032f4ffbbafffbe51726ad3c164a3d0d37ec27bc67b29a159b0f49ae8ac21b8508" split="40"></podcast:valueRecipient>
       <podcast:valueRecipient name="Producer" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="10"></podcast:valueRecipient>
       <podcast:valueTimeSplit startTime="60" duration="237" remotePercentage="95">
-        <podcast:remoteItem itemGuid="https://podcastindex.org/podcast/4148683#1" feedGuid="a94f5cc9-8c58-55fc-91fe-a324087a655b" medium="music"></podcast:remoteItem>
+        <podcast:remoteItem itemGuid="https://podcastindex.org/podcast/4148683#1" feedGuid="a94f5cc9-8c58-55fc-91fe-a324087a655b" feedUrl="https://feeds.podcastindex.org/Album-TourconVII.xml" medium="music"></podcast:remoteItem>
       </podcast:valueTimeSplit>
       <podcast:valueTimeSplit startTime="330" duration="53" remoteStartTime="174" remotePercentage="95">
         <podcast:remoteItem itemGuid="https://podcastindex.org/podcast/4148683#3" feedGuid="a94f5cc9-8c58-55fc-91fe-a324087a655b" medium="music"></podcast:remoteItem>

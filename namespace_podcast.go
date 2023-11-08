@@ -81,6 +81,7 @@ type PodcastRemoteItem struct {
 	XMLName  xml.Name       `xml:"podcast:remoteItem"`
 	ItemGUID *string        `xml:"itemGuid,attr"`
 	FeedGUID uuid.UUID      `xml:"feedGuid,attr"`
+	FeedURL  *string        `xml:"feedUrl,attr"`
 	Medium   *PodcastMedium `xml:"medium,attr"`
 }
 
