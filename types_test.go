@@ -311,6 +311,9 @@ func TestMarshal(t *testing.T) {
 							GUID: &types.GUID{
 								GUID: "https://rssblue.com/@bookworm-podcast/hello-world",
 							},
+							PodcastISRC: &types.PodcastISRC{
+								ISRC: "AA6Q72000047",
+							},
 							PubDate: pointer(types.Date(time.Date(2021, time.July, 8, 15, 20, 10, 0, time.UTC))),
 							Description: &types.Description{
 								Description: "This is my <em>first</em> episode!",
@@ -462,6 +465,7 @@ func TestMarshal(t *testing.T) {
       <itunes:explicit>true</itunes:explicit>
       <podcast:chapters url="https://rssblue.com/@bookworm-podcast/hello-world/chapters.json" type="application/json+chapters"></podcast:chapters>
       <podcast:episode display="Ch.3">315.5</podcast:episode>
+      <podcast:isrc>AA6Q72000047</podcast:isrc>
       <podcast:location geo="geo:39.7837304,-100.445882;u=3900000" osm="R148838">Gitmo Nation</podcast:location>
       <podcast:person group="writing" role="guest" href="https://www.wikipedia/alicebrown" img="http://example.com/images/alicebrown.jpg">Alice Brown</podcast:person>
       <podcast:person group="visuals" role="Cover Art Designer" href="https://example.com/artist/beckysmith">Becky Smith</podcast:person>

@@ -276,6 +276,13 @@ type PodcastTXT struct {
 	Purpose *string  `xml:"purpose,attr"`
 }
 
+// PodcastISRC is an experimental tag to store International Standard Recording
+// Codes. Read more at https://isrc.ifpi.org
+type PodcastISRC struct {
+	XMLName xml.Name `xml:"podcast:isrc"`
+	ISRC    string   `xml:",chardata"`
+}
+
 // PodcastPodping allows feed owners to signal to aggregators that the feed sends out Podping notifications when changes are made to it.
 // Read more at
 // https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#podping
