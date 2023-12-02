@@ -221,7 +221,7 @@ func TestMarshal(t *testing.T) {
 								{
 									Mimetype: "video/mp4",
 									Length:   pointer[int64](7924786),
-									Bitrate:  pointer(511276.52),
+									Bitrate:  pointer[int64](511276),
 									Height:   pointer[int64](720),
 									Sources: []types.PodcastSource{
 										{
@@ -451,7 +451,7 @@ func TestMarshal(t *testing.T) {
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>false</itunes:explicit>
       <itunes:image href="https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png"></itunes:image>
-      <podcast:alternateEnclosure type="video/mp4" length="7924786" bitrate="511276.52" height="720">
+      <podcast:alternateEnclosure type="video/mp4" length="7924786" bitrate="511276" height="720">
         <podcast:source uri="https://example.com/file-720.mp4"></podcast:source>
       </podcast:alternateEnclosure>
       <podcast:episode>3</podcast:episode>

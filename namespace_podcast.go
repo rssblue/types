@@ -298,7 +298,7 @@ type PodcastAlternateEnclosure struct {
 	XMLName      xml.Name `xml:"podcast:alternateEnclosure"`
 	Mimetype     string   `xml:"type,attr"`
 	Length       *int64   `xml:"length,attr"`
-	Bitrate      *float64 `xml:"bitrate,attr"`
+	Bitrate      *int64   `xml:"bitrate,attr"`
 	Height       *int64   `xml:"height,attr"`
 	LanguageCode *string  `xml:"lang,attr"`
 	Title        *string  `xml:"title,attr"`
