@@ -217,6 +217,19 @@ func TestMarshal(t *testing.T) {
 								Mimetype: "audio/mpeg",
 								Length:   2048,
 							},
+							PodcastAlternateEnclosures: []types.PodcastAlternateEnclosure{
+								{
+									Mimetype: "video/mp4",
+									Length:   pointer[int64](7924786),
+									Bitrate:  pointer(511276.52),
+									Height:   pointer[int64](720),
+									Sources: []types.PodcastSource{
+										{
+											URI: "https://example.com/file-720.mp4",
+										},
+									},
+								},
+							},
 							GUID: &types.GUID{
 								GUID:        "hello-again",
 								IsPermaLink: pointer(false),
@@ -438,6 +451,9 @@ func TestMarshal(t *testing.T) {
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>false</itunes:explicit>
       <itunes:image href="https://rssblue.com/@bookworm-podcast/hello-again/cover-art.png"></itunes:image>
+      <podcast:alternateEnclosure type="video/mp4" length="7924786" bitrate="511276.52" height="720">
+        <podcast:source uri="https://example.com/file-720.mp4"></podcast:source>
+      </podcast:alternateEnclosure>
       <podcast:episode>3</podcast:episode>
       <podcast:person role="guest" href="https://www.imdb.com/name/nm0427852888/" img="http://example.com/images/janedoe.jpg">Jane Doe</podcast:person>
       <podcast:person role="guest" href="https://www.wikipedia/alicebrown" img="http://example.com/images/alicebrown.jpg">Alice Brown</podcast:person>

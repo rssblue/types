@@ -84,31 +84,32 @@ type Channel struct {
 
 // Item represents episode of a podcast.
 type Item struct {
-	XMLName             xml.Name     `xml:"item"`
-	Description         *Description `xml:"description"`
-	Enclosure           *Enclosure
-	GUID                *GUID
-	Link                *string `xml:"link"`
-	PubDate             *Date   `xml:"pubDate"`
-	Title               *string `xml:"title"`
-	ContentEncoded      *ContentEncoded
-	ITunesDuration      *ITunesDuration `xml:"itunes:duration"`
-	ITunesEpisodeNumber *int64          `xml:"itunes:episode"`
-	ITunesEpisodeType   *string         `xml:"itunes:episodeType"`
-	ITunesExplicit      *bool           `xml:"itunes:explicit"`
-	ITunesImage         *ITunesImage
-	ITunesSeasonNumber  *int64 `xml:"itunes:season"`
-	PodcastChapters     *PodcastChapters
-	PodcastEpisode      *PodcastEpisode
-	PodcastISRC         *PodcastISRC
-	PodcastLocation     *PodcastLocation
-	PodcastPersons      []PodcastPerson
-	PodcastSeason       *PodcastSeason
-	PodcastSoundbites   []PodcastSoundbite
-	PodcastTXTs         []PodcastTXT
-	PodcastTranscripts  []PodcastTranscript
-	PodcastValue        *PodcastValue
-	PSCChapters         *PSCChapters
+	XMLName                    xml.Name     `xml:"item"`
+	Description                *Description `xml:"description"`
+	Enclosure                  *Enclosure
+	GUID                       *GUID
+	Link                       *string `xml:"link"`
+	PubDate                    *Date   `xml:"pubDate"`
+	Title                      *string `xml:"title"`
+	ContentEncoded             *ContentEncoded
+	ITunesDuration             *ITunesDuration `xml:"itunes:duration"`
+	ITunesEpisodeNumber        *int64          `xml:"itunes:episode"`
+	ITunesEpisodeType          *string         `xml:"itunes:episodeType"`
+	ITunesExplicit             *bool           `xml:"itunes:explicit"`
+	ITunesImage                *ITunesImage
+	ITunesSeasonNumber         *int64 `xml:"itunes:season"`
+	PodcastAlternateEnclosures []PodcastAlternateEnclosure
+	PodcastChapters            *PodcastChapters
+	PodcastEpisode             *PodcastEpisode
+	PodcastISRC                *PodcastISRC
+	PodcastLocation            *PodcastLocation
+	PodcastPersons             []PodcastPerson
+	PodcastSeason              *PodcastSeason
+	PodcastSoundbites          []PodcastSoundbite
+	PodcastTXTs                []PodcastTXT
+	PodcastTranscripts         []PodcastTranscript
+	PodcastValue               *PodcastValue
+	PSCChapters                *PSCChapters
 }
 
 // Date is used to format the publish date of an episode.

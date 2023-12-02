@@ -290,3 +290,28 @@ type PodcastPodping struct {
 	XMLName     xml.Name `xml:"podcast:podping"`
 	UsesPodping *bool    `xml:"usesPodping,attr"`
 }
+
+// PodcastAlternateEnclosure provides different versions of, or companion media to the main `<enclosure>` file.
+// Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#alternate-enclosure
+type PodcastAlternateEnclosure struct {
+	XMLName      xml.Name `xml:"podcast:alternateEnclosure"`
+	Mimetype     string   `xml:"type,attr"`
+	Length       *int64   `xml:"length,attr"`
+	Bitrate      *float64 `xml:"bitrate,attr"`
+	Height       *int64   `xml:"height,attr"`
+	LanguageCode *string  `xml:"lang,attr"`
+	Title        *string  `xml:"title,attr"`
+	Rel          *string  `xml:"rel,attr"`
+	Default      *bool    `xml:"default,attr"`
+	Sources      []PodcastSource
+}
+
+// PodcastSource defines a uri location for a `<podcast:alternateEnclosure>` media file.
+// Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#source
+type PodcastSource struct {
+	XMLName     xml.Name `xml:"podcast:source"`
+	URI         string   `xml:"uri,attr"`
+	ContentType *string  `xml:"contentType,attr"`
+}
