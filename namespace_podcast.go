@@ -315,3 +315,48 @@ type PodcastSource struct {
 	URI         string   `xml:"uri,attr"`
 	ContentType *string  `xml:"contentType,attr"`
 }
+
+type PodcastContentLink struct {
+	XMLName xml.Name `xml:"podcast:contentLink"`
+	Href    string   `xml:"href,attr"`
+	Text    string   `xml:",chardata"`
+}
+
+type PodcastLiveStatus string
+
+var (
+	PodcastLiveStatusPending PodcastLiveStatus = "pending"
+	PodcastLiveStatusLive    PodcastLiveStatus = "live"
+	PodcastLiveStatusEnded   PodcastLiveStatus = "ended"
+)
+
+type PodcastLiveItem struct {
+	XMLName xml.Name `xml:"podcast:liveItem"`
+
+	Status    PodcastLiveStatus `xml:"status,attr"`
+	StartTime time.Time         `xml:"start,attr"`
+	EndTime   *time.Time        `xml:"end,attr,omitempty"`
+
+	Description                *Description `xml:"description"`
+	Enclosure                  *Enclosure
+	GUID                       *GUID
+	Link                       *string `xml:"link"`
+	Title                      *string `xml:"title"`
+	ContentEncoded             *ContentEncoded
+	ITunesEpisodeNumber        *int64  `xml:"itunes:episode"`
+	ITunesEpisodeType          *string `xml:"itunes:episodeType"`
+	ITunesExplicit             *bool   `xml:"itunes:explicit"`
+	ITunesImage                *ITunesImage
+	ITunesSeasonNumber         *int64 `xml:"itunes:season"`
+	PodcastAlternateEnclosures []PodcastAlternateEnclosure
+	PodcastContentLinks        []PodcastContentLink
+	PodcastEpisode             *PodcastEpisode
+	PodcastISRC                *PodcastISRC
+	PodcastLocation            *PodcastLocation
+	PodcastPersons             []PodcastPerson
+	PodcastSeason              *PodcastSeason
+	PodcastSoundbites          []PodcastSoundbite
+	PodcastTXTs                []PodcastTXT
+	PodcastTranscripts         []PodcastTranscript
+	PodcastValue               *PodcastValue
+}

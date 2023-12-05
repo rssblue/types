@@ -157,6 +157,28 @@ func TestMarshal(t *testing.T) {
 					PodcastPodping: &types.PodcastPodping{
 						UsesPodping: pointer(true),
 					},
+					PodcastLiveItems: []types.PodcastLiveItem{
+						{
+							Status:    types.PodcastLiveStatusLive,
+							StartTime: time.Date(2021, time.September, 9, 26, 7, 30, 0, time.UTC),
+							EndTime:   pointer(time.Date(2021, time.September, 9, 26, 9, 30, 0, time.UTC)),
+							Title:     pointer("Podcasting 2.0 Live Stream"),
+							GUID: &types.GUID{
+								GUID: "e32b4890-983b-4ce5-8b46-f2d6bc1d8819",
+							},
+							Enclosure: &types.Enclosure{
+								URL:      "https://example.com/pc20/livestream?format=.mp3",
+								Mimetype: "audio/mpeg",
+								Length:   312,
+							},
+							PodcastContentLinks: []types.PodcastContentLink{
+								{
+									Href: "https://example.com/html/livestream",
+									Text: "Listen Live!",
+								},
+							},
+						},
+					},
 					Items: []types.Item{
 						{
 							Title: pointer("Simple Episode"),
@@ -426,6 +448,12 @@ func TestMarshal(t *testing.T) {
         <podcast:remoteItem itemGuid="https://podcastindex.org/podcast/4148683#3" feedGuid="a94f5cc9-8c58-55fc-91fe-a324087a655b" medium="music"></podcast:remoteItem>
       </podcast:valueTimeSplit>
     </podcast:value>
+    <podcast:liveItem status="live" start="2021-09-10T02:07:30Z" end="2021-09-10T02:09:30Z">
+      <enclosure url="https://example.com/pc20/livestream?format=.mp3" length="312" type="audio/mpeg"></enclosure>
+      <guid>e32b4890-983b-4ce5-8b46-f2d6bc1d8819</guid>
+      <title>Podcasting 2.0 Live Stream</title>
+      <podcast:contentLink href="https://example.com/html/livestream">Listen Live!</podcast:contentLink>
+    </podcast:liveItem>
     <item>
       <description>This is a simple episode &amp; its description.</description>
       <enclosure url="https://rssblue.com/@bookworm-podcast/simple-episode/simple-episode.mp3" length="1024" type="audio/mpeg"></enclosure>

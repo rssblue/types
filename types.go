@@ -79,6 +79,7 @@ type Channel struct {
 	PodcastTXTs        []PodcastTXT
 	PodcastTrailers    []PodcastTrailer
 	PodcastValue       *PodcastValue
+	PodcastLiveItems   []PodcastLiveItem
 	Items              []Item
 }
 
