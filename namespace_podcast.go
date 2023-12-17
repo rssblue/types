@@ -352,6 +352,7 @@ type PodcastLiveItem struct {
 	PodcastContentLinks        []PodcastContentLink
 	PodcastEpisode             *PodcastEpisode
 	PodcastISRC                *PodcastISRC
+	PodcastLiveValue           *PodcastLiveValue
 	PodcastLocation            *PodcastLocation
 	PodcastPersons             []PodcastPerson
 	PodcastSeason              *PodcastSeason
