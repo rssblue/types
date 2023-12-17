@@ -360,3 +360,10 @@ type PodcastLiveItem struct {
 	PodcastTranscripts         []PodcastTranscript
 	PodcastValue               *PodcastValue
 }
+
+// PodcastLiveValue is an experimental tag to transmit updates during a livestream.
+type PodcastLiveValue struct {
+	XMLName  xml.Name `xml:"podcast:liveValue"`
+	URI      string   `xml:"uri,attr"`
+	Protocol string   `xml:"protocol,attr"`
+}
