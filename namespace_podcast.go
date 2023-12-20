@@ -349,6 +349,7 @@ type PodcastLiveItem struct {
 	ITunesImage                *ITunesImage
 	ITunesSeasonNumber         *int64 `xml:"itunes:season"`
 	PodcastAlternateEnclosures []PodcastAlternateEnclosure
+	PodcastChat                *PodcastChat
 	PodcastContentLinks        []PodcastContentLink
 	PodcastEpisode             *PodcastEpisode
 	PodcastISRC                *PodcastISRC
@@ -367,4 +368,14 @@ type PodcastLiveValue struct {
 	XMLName  xml.Name `xml:"podcast:liveValue"`
 	URI      string   `xml:"uri,attr"`
 	Protocol string   `xml:"protocol,attr"`
+}
+
+// PodcastChat is an experimental tag to enable chat during a livestream.
+type PodcastChat struct {
+	XMLName   xml.Name `xml:"podcast:chat"`
+	Server    string   `xml:"server,attr"`
+	Protocol  string   `xml:"protocol,attr"`
+	AccountID *string  `xml:"accountId,attr"`
+	Space     *string  `xml:"space,attr"`
+	EmbedURL  *string  `xml:"embedUrl,attr"`
 }
