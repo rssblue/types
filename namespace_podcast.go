@@ -379,3 +379,10 @@ type PodcastChat struct {
 	Space     *string  `xml:"space,attr"`
 	EmbedURL  *string  `xml:"embedUrl,attr"`
 }
+
+// PodcastSingleItem denotes whether the feed contains a single item or multiple items.
+// It's a proposal described at https://github.com/Podcastindex-org/podcast-namespace/discussions/578
+type PodcastSingleItem struct {
+	XMLName xml.Name `xml:"podcast:singleItem"`
+	Value   bool     `xml:",chardata"`
+}

@@ -76,6 +76,7 @@ type Channel struct {
 	PodcastPersons     []PodcastPerson
 	PodcastPodping     *PodcastPodping
 	PodcastRemoteItems []PodcastRemoteItem
+	PodcastSingleItem  *PodcastSingleItem
 	PodcastTXTs        []PodcastTXT
 	PodcastTrailers    []PodcastTrailer
 	PodcastValue       *PodcastValue

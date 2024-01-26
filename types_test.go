@@ -71,6 +71,9 @@ func TestMarshal(t *testing.T) {
 							Caption: "Support “Bookworm Podcast”",
 						},
 					},
+					PodcastSingleItem: &types.PodcastSingleItem{
+						Value: false,
+					},
 					PodcastValue: &types.PodcastValue{
 						Type:   "lightning",
 						Method: "keysend",
@@ -433,6 +436,7 @@ func TestMarshal(t *testing.T) {
     <podcast:medium>podcast</podcast:medium>
     <podcast:person href="https://example.com/johnsmith/blog" img="http://example.com/images/johnsmith.jpg">John Smith</podcast:person>
     <podcast:podping usesPodping="true"></podcast:podping>
+    <podcast:singleItem>false</podcast:singleItem>
     <podcast:txt>naj3eEZaWVVY9a38uhX8FekACyhtqP4JN</podcast:txt>
     <podcast:txt purpose="verify">S6lpp-7ZCn8-dZfGc-OoyaG</podcast:txt>
     <podcast:trailer pubdate="Thu, 01 Apr 2021 08:00:00 GMT" url="https://example.org/trailers/teaser" length="12345678" type="audio/mp3">Coming April 1st, 2021</podcast:trailer>
