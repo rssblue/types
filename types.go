@@ -75,6 +75,7 @@ type Channel struct {
 	PodcastMedium      *PodcastMedium `xml:"podcast:medium"`
 	PodcastPersons     []PodcastPerson
 	PodcastPodping     *PodcastPodping
+	PodcastPublisher   *PodcastPublisher
 	PodcastRemoteItems []PodcastRemoteItem
 	PodcastSingleItem  *PodcastSingleItem
 	PodcastTXTs        []PodcastTXT

@@ -71,6 +71,15 @@ func TestMarshal(t *testing.T) {
 							Caption: "Support “Bookworm Podcast”",
 						},
 					},
+					PodcastPublisher: &types.PodcastPublisher{
+						RemoteItems: []types.PodcastRemoteItem{
+							{
+								FeedGUID: uuid.MustParse("003af0a0-6a45-55cf-b765-68e3d349551a"),
+								FeedURL:  pointer("https://agilesetmedia.com/assets/static/feeds/publisher.xml"),
+								Medium:   pointer(types.PodcastMediumPublisher),
+							},
+						},
+					},
 					PodcastSingleItem: &types.PodcastSingleItem{
 						Value: false,
 					},
@@ -436,6 +445,9 @@ func TestMarshal(t *testing.T) {
     <podcast:medium>podcast</podcast:medium>
     <podcast:person href="https://example.com/johnsmith/blog" img="http://example.com/images/johnsmith.jpg">John Smith</podcast:person>
     <podcast:podping usesPodping="true"></podcast:podping>
+    <podcast:publisher>
+      <podcast:remoteItem feedGuid="003af0a0-6a45-55cf-b765-68e3d349551a" feedUrl="https://agilesetmedia.com/assets/static/feeds/publisher.xml" medium="publisher"></podcast:remoteItem>
+    </podcast:publisher>
     <podcast:singleItem>false</podcast:singleItem>
     <podcast:txt>naj3eEZaWVVY9a38uhX8FekACyhtqP4JN</podcast:txt>
     <podcast:txt purpose="verify">S6lpp-7ZCn8-dZfGc-OoyaG</podcast:txt>

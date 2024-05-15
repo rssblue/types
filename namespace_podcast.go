@@ -265,6 +265,18 @@ var (
 	PodcastMediumAudioBook  PodcastMedium = "audiobook"
 	PodcastMediumNewsletter PodcastMedium = "newsletter"
 	PodcastMediumBlog       PodcastMedium = "blog"
+
+	PodcastMediumPublisher PodcastMedium = "publisher"
+
+	PodcastMediumPodcastList    PodcastMedium = "podcastL"
+	PodcastMediumMusicList      PodcastMedium = "musicL"
+	PodcastMediumVideoList      PodcastMedium = "videoL"
+	PodcastMediumFilmList       PodcastMedium = "filmL"
+	PodcastMediumAudioBookList  PodcastMedium = "audiobookL"
+	PodcastMediumNewsletterList PodcastMedium = "newsletterL"
+	PodcastMediumBlogList       PodcastMedium = "blogL"
+	PodcastMediumPublisherList  PodcastMedium = "publisherL"
+	PodcastMediumMixedList      PodcastMedium = "mixed"
 )
 
 // PodcastTXT is intended for free-form text and is modeled after the DNS "TXT"
@@ -289,6 +301,14 @@ type PodcastISRC struct {
 type PodcastPodping struct {
 	XMLName     xml.Name `xml:"podcast:podping"`
 	UsesPodping *bool    `xml:"usesPodping,attr"`
+}
+
+// PodcastPublisher allows a podcast feed to link to it's "publisher feed" parent.
+// Read more at
+// https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#publisher
+type PodcastPublisher struct {
+	XMLName     xml.Name `xml:"podcast:publisher"`
+	RemoteItems []PodcastRemoteItem
 }
 
 // PodcastAlternateEnclosure provides different versions of, or companion media to the main `<enclosure>` file.
