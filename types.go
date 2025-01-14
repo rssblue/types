@@ -70,6 +70,7 @@ type Channel struct {
 	ITunesType         *string `xml:"itunes:type"`
 	PodcastFundings    []PodcastFunding
 	PodcastGUID        *PodcastGUID `xml:"podcast:guid"`
+	PodcastLicense     *PodcastLicense
 	PodcastLocation    *PodcastLocation
 	PodcastLocked      *PodcastLocked
 	PodcastMedium      *PodcastMedium `xml:"podcast:medium"`
@@ -105,6 +106,7 @@ type Item struct {
 	PodcastChapters            *PodcastChapters
 	PodcastEpisode             *PodcastEpisode
 	PodcastISRC                *PodcastISRC
+	PodcastLicense             *PodcastLicense
 	PodcastLocation            *PodcastLocation
 	PodcastPersons             []PodcastPerson
 	PodcastSeason              *PodcastSeason

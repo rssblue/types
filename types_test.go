@@ -61,6 +61,9 @@ func TestMarshal(t *testing.T) {
 					},
 					ITunesType: pointer("episodic"),
 					Copyright:  pointer("© RSS Blue"),
+					PodcastLicense: &types.PodcastLicense{
+						Value: "ARR",
+					},
 					PodcastLocked: &types.PodcastLocked{
 						Owner:    pointer("jane@example.com"),
 						IsLocked: false,
@@ -378,6 +381,10 @@ func TestMarshal(t *testing.T) {
 								URL:      "https://rssblue.com/@bookworm-podcast/hello-world/chapters.json",
 								Mimetype: "application/json+chapters",
 							},
+							PodcastLicense: &types.PodcastLicense{
+								Value: "CC-BY-4.0",
+								URL:   pointer("https://creativecommons.org/licenses/by/4.0"),
+							},
 							PodcastLocation: &types.PodcastLocation{
 								Geo: &types.PodcastGeo{
 									Latitude:    39.7837304,
@@ -441,6 +448,7 @@ func TestMarshal(t *testing.T) {
     <itunes:type>episodic</itunes:type>
     <podcast:funding url="https://example.com/donate">Support “Bookworm Podcast”</podcast:funding>
     <podcast:guid>cda647ce-56b8-5d7c-9448-ba1993ab46b7</podcast:guid>
+    <podcast:license>ARR</podcast:license>
     <podcast:locked owner="jane@example.com">no</podcast:locked>
     <podcast:medium>podcast</podcast:medium>
     <podcast:person href="https://example.com/johnsmith/blog" img="http://example.com/images/johnsmith.jpg">John Smith</podcast:person>
@@ -526,6 +534,7 @@ func TestMarshal(t *testing.T) {
       <podcast:chapters url="https://rssblue.com/@bookworm-podcast/hello-world/chapters.json" type="application/json+chapters"></podcast:chapters>
       <podcast:episode display="Ch.3">315.5</podcast:episode>
       <podcast:isrc>AA6Q72000047</podcast:isrc>
+      <podcast:license url="https://creativecommons.org/licenses/by/4.0">CC-BY-4.0</podcast:license>
       <podcast:location geo="geo:39.7837304,-100.445882;u=3900000" osm="R148838">Gitmo Nation</podcast:location>
       <podcast:person group="writing" role="guest" href="https://www.wikipedia/alicebrown" img="http://example.com/images/alicebrown.jpg">Alice Brown</podcast:person>
       <podcast:person group="visuals" role="Cover Art Designer" href="https://example.com/artist/beckysmith">Becky Smith</podcast:person>

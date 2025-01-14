@@ -406,3 +406,11 @@ type PodcastSingleItem struct {
 	XMLName xml.Name `xml:"podcast:singleItem"`
 	Value   bool     `xml:",chardata"`
 }
+
+// PodcastLicense defines a license that is applied to the audio/video content of a single episode,
+// or the audio/video of the podcast as a whole.
+type PodcastLicense struct {
+	XMLName xml.Name `xml:"podcast:license"`
+	Value   string   `xml:",chardata"`
+	URL     *string  `xml:"url,attr"`
+}
